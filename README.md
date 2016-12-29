@@ -28,7 +28,7 @@ The biggest difference of this project from the one @justindean created is the f
 If you are looking for non-DIY alternatives, the products from [BBQ Guru](http://www.bbqguru.com/) seem to fit the bill
 * CyberQ offers almost identical functionality for $329
 * DigiQ offers smoker and meat temperature control without any alerting/notifications or internet access
-* PartyQ offers smoker temperature control
+* PartyQ only offers smoker temperature control
 
 ## Wiring Diagram
 

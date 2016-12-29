@@ -24,10 +24,18 @@ The biggest difference of this project from the one @justindean created is the f
 | Relay | 4-channel DC 5V Relay Module AC250V/10A, DC30V/10A | $7 | https://www.amazon.com/JBtek-Channel-Module-Arduino-Raspberry/dp/B00KTEN3TM |
 | Wiring | Female to Female 1P-1P jumper cables, 100 pcs | $8 | https://www.amazon.com/SUNKEE-100pcs-female-jumper-Dupont/dp/B00AYCON8Y |
 
+## Competition
+If you are looking for non-DIY alternatives, the products from [BBQ Guru](http://www.bbqguru.com/) seem to fit the bill
+* CyberQ offers almost identical functionality for $329
+* DigiQ offers smoker and meat temperature control without any alerting/notifications or internet access
+* PartyQ offers smoker temperature control
+
 ## Wiring Diagram
 
 
 ## Source Code
+
+
 
 
 ## Pictures

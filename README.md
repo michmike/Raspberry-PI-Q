@@ -20,9 +20,9 @@ The biggest difference of this project from the one @justindean created is the f
 | Fan Power | 3v-12v DC 1amp/12watts adjustable power supply for the fan | $11 | https://www.amazon.com/gp/product/B015PXUHYA |
 | Thermocouple #1 | K Type 20cm Probe Thermocouple 5ft long 0-400 celcius | $5 | https://www.amazon.com/uxcell-Probe-Thermocouple-Temperature-Sensor/dp/B008MU0SUM |
 | Thermocouple #2 | K Type 20cm Probe Thermocouple 5ft long 0-400 celcius | $5 | https://www.amazon.com/uxcell-Probe-Thermocouple-Temperature-Sensor/dp/B008MU0SUM |
-| Thermocouple Plate | Dual Thermocouple Plate for Raspberry | $50 | http://www.robogaia.com/raspberry-pi-dual-thermocouple-plate.html |
-| Relay | 4-channel DC 5V Relay Module AC250V/10A, DC30V/10A | $7 | https://www.amazon.com/gp/product/B00KTEN3TM |
-| Wiring | Female to Female 1P-1P jumper cables, 100 pcs | $8 | https://www.amazon.com/SUNKEE-100pcs-female-jumper-Dupont/dp/B00AYCON8Y |
+| Thermocouple Plate | Robogaia Dual Thermocouple Plate for Raspberry | $50 | http://www.robogaia.com/raspberry-pi-dual-thermocouple-plate.html |
+| Relay | JBtek 4-channel DC 5V Relay Module AC250V/10A, DC30V/10A | $7 | https://www.amazon.com/gp/product/B00KTEN3TM |
+| Wiring | Sunkee Female to Female 1P-1P 20cm jumper cables, 100 pcs | $8 | https://www.amazon.com/gp/product/B00AYCON8Y |
 | Case | Case to house and protect all the equipment | TBD | TBD |
 
 ## Competition
@@ -32,7 +32,9 @@ If you are looking for non-DIY alternatives, the products from [BBQ Guru](http:/
 * PartyQ only offers smoker temperature control for $150
 
 ## Wiring Diagram
-
+* Help on wiring the relay
+** https://www.amazon.com/gp/customer-reviews/RUNBAXRMMUMBL/ref=cm_cr_arp_d_rvw_ttl?ie=UTF8&ASIN=B00KTEN3TM
+** https://www.youtube.com/watch?v=OQyntQLazMU
 
 ## Source Code
 

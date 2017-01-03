@@ -15,20 +15,21 @@ The biggest difference of this project from the one @justindean created is the f
 | ------------- | ---- | ----- | ---- |
 | Computer | Raspberry Pi 3 Model B Motherboard | $40 | https://www.amazon.com/Raspberry-Pi-RASP-PI-3-Model-Motherboard/dp/B01CD5VC92 |
 | Power Supply | 5V 2.5A power supply  | $10 | https://www.amazon.com/CanaKit-Raspberry-Supply-Adapter-Charger/dp/B00MARDJZ4 |
-| Memory | Samsung 16GB microSDHC Class 6 | $10 | https://www.amazon.com/Samsung-Electronics-microSDHC-MB-MSAGB-AM/dp/B009SK599U |
-| Fan | DC 12V 0.15A Squirrel Cage brushless fan | $9 | https://www.amazon.com/Connector-Cooling-Blower-50mmx15mm-Laptop/dp/B00MJU6JR2 |
-| Fan Power | 12v power supply for the fan | $12 | https://www.amazon.com/Universal-Charger-Switching-Adjustable-Electronics/dp/B01M11RRXX |
+| Memory | Samsung 16GB microSDHC Class 10 | $10 | https://www.amazon.com/Samsung-Adapter-MB-MP16DA-Packaging-Extender/dp/B01527LASQ |
+| Fan | DC 12V Squirrel Cage brushless fan (up to 0.5amps ~ 6 watts) | $10 | https://www.amazon.com/gp/product/B00B2ARV22 |
+| Fan Power | 3v-12v DC 1amp/12watts adjustable power supply for the fan | $11 | https://www.amazon.com/gp/product/B015PXUHYA |
 | Thermocouple #1 | K Type 20cm Probe Thermocouple 5ft long 0-400 celcius | $5 | https://www.amazon.com/uxcell-Probe-Thermocouple-Temperature-Sensor/dp/B008MU0SUM |
 | Thermocouple #2 | K Type 20cm Probe Thermocouple 5ft long 0-400 celcius | $5 | https://www.amazon.com/uxcell-Probe-Thermocouple-Temperature-Sensor/dp/B008MU0SUM |
 | Thermocouple Plate | Dual Thermocouple Plate for Raspberry | $50 | http://www.robogaia.com/raspberry-pi-dual-thermocouple-plate.html |
-| Relay | 4-channel DC 5V Relay Module AC250V/10A, DC30V/10A | $7 | https://www.amazon.com/JBtek-Channel-Module-Arduino-Raspberry/dp/B00KTEN3TM |
+| Relay | 4-channel DC 5V Relay Module AC250V/10A, DC30V/10A | $7 | https://www.amazon.com/gp/product/B00KTEN3TM |
 | Wiring | Female to Female 1P-1P jumper cables, 100 pcs | $8 | https://www.amazon.com/SUNKEE-100pcs-female-jumper-Dupont/dp/B00AYCON8Y |
+| Case | Case to house and protect all the equipment | TBD | TBD |
 
 ## Competition
 If you are looking for non-DIY alternatives, the products from [BBQ Guru](http://www.bbqguru.com/) seem to fit the bill
 * CyberQ offers almost identical functionality for $329
-* DigiQ offers smoker and meat temperature control without any alerting/notifications or internet access
-* PartyQ only offers smoker temperature control
+* DigiQ offers smoker and meat temperature control without any alerting/notifications or internet access for $219
+* PartyQ only offers smoker temperature control for $150
 
 ## Wiring Diagram
 

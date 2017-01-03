@@ -33,8 +33,8 @@ If you are looking for non-DIY alternatives, the products from [BBQ Guru](http:/
 
 ## Wiring Diagram
 * Help on wiring the relay
-** https://www.amazon.com/gp/customer-reviews/RUNBAXRMMUMBL/ref=cm_cr_arp_d_rvw_ttl?ie=UTF8&ASIN=B00KTEN3TM
-** https://www.youtube.com/watch?v=OQyntQLazMU
+  * https://www.amazon.com/gp/customer-reviews/RUNBAXRMMUMBL/ref=cm_cr_arp_d_rvw_ttl?ie=UTF8&ASIN=B00KTEN3TM
+  * https://www.youtube.com/watch?v=OQyntQLazMU
 
 ## Source Code
 

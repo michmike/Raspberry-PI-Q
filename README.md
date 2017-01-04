@@ -18,8 +18,8 @@ The biggest difference of this project from the one @justindean created is the f
 | Memory | Samsung 16GB microSDHC Class 10 | $10 | https://www.amazon.com/Samsung-Adapter-MB-MP16DA-Packaging-Extender/dp/B01527LASQ |
 | Fan | DC 12V Squirrel Cage brushless fan (up to 0.5amps ~ 6 watts) | $10 | https://www.amazon.com/gp/product/B00B2ARV22 |
 | Fan Power | 3v-12v DC 1amp/12watts adjustable power supply for the fan | $11 | https://www.amazon.com/gp/product/B015PXUHYA |
-| Thermocouple #1 | K Type 20cm Probe Thermocouple 5ft long 0-400 celcius | $5 | https://www.amazon.com/uxcell-Probe-Thermocouple-Temperature-Sensor/dp/B008MU0SUM |
-| Thermocouple #2 | K Type 20cm Probe Thermocouple 5ft long 0-400 celcius | $5 | https://www.amazon.com/uxcell-Probe-Thermocouple-Temperature-Sensor/dp/B008MU0SUM |
+| Thermocouple #1 | uxcell K Type 0-400C Thermocouple 5cm Probe, 1M length | $5 | https://www.amazon.com/gp/product/B00899A4LY |
+| Thermocouple #2 | uxcell K Type 0-800C Thermocouple 10cm Probe, 2M length | $5 | https://www.amazon.com/gp/product/B00C97J0LC |
 | Thermocouple Plate | Robogaia Dual Thermocouple Plate for Raspberry | $50 | http://www.robogaia.com/raspberry-pi-dual-thermocouple-plate.html |
 | Relay | JBtek 4-channel DC 5V Relay Module AC250V/10A, DC30V/10A | $7 | https://www.amazon.com/gp/product/B00KTEN3TM |
 | Wiring | Sunkee Female to Female 1P-1P 20cm jumper cables, 100 pcs | $8 | https://www.amazon.com/gp/product/B00AYCON8Y |

@@ -5,8 +5,8 @@
 # Check scheduled tasks using: crontab -l
 
 cd /
-cd home/pi/raspberry-pi-q
-sudo python3 email_IP_address.py
-sudo git clone https://github.com/michmike/Raspberry-PI-Q.git  
+cd home/pi/Raspberry-PI-Q 
 sudo git pull
+sudo python3 email_IP_address.py
+#sudo git clone https://github.com/michmike/Raspberry-PI-Q.git  
 cd /

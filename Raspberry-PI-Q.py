@@ -6,8 +6,8 @@
 # https://raw.githubusercontent.com/michmike/Raspberry-PI-Q/master/LICENSE
 #================================================================#
 
-###import smbus
-###import RPi.GPIO as GPIO
+import smbus
+import RPi.GPIO as GPIO
 import time
 from time import sleep
 import datetime
@@ -36,12 +36,13 @@ GROVE_COMPONENT_ID = "<entered through arguments>" # this is the same value as t
 #================ GLOBAL VARIABLES - NEED CONFIG ================#
 
 #==================== FIXED GLOBAL VARIABLES ====================#
-###bus = smbus.SMBus(1)
-###GPIO.setmode(GPIO.BCM)
-###pinList = [2, 3, 4, 17]
-#for i in pinList: 
-#  GPIO.setup(i, GPIO.OUT) 
-#  GPIO.output(i, GPIO.HIGH)
+GPIO_RELAY_FAN_PIN = 26 # this is the GPIO PIN number on the Raspberry for the Fan Relay
+bus = smbus.SMBus(1)
+GPIO.setmode(GPIO.BCM)
+pinList = [GPIO_RELAY_FAN_PIN]
+for i in pinList: 
+    GPIO.setup(i, GPIO.OUT) 
+    GPIO.output(i, GPIO.HIGH)
 
 THERMOCOUPLE_1_ADDRESS = 0x4c #I2C address for Robogaia dual thermocouple
 THERMOCOUPLE_2_ADDRESS = 0x4f #I2C address for Robogaia dual thermocouple
@@ -120,7 +121,7 @@ Subject: %s
 
 def log_data(currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTemp, timeLeft):
     log_dweety_data(currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTemp, timeLeft)
-    log_grovestreams_data(currGrillTemp, currMeatTemp)
+    ###log_grovestreams_data(currGrillTemp, currMeatTemp)
 
 #================================================================#
 
@@ -138,10 +139,10 @@ def log_dweety_data(currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTe
 
 def get_current_Grill_temp(): 
     try:
-        ###data = bus.read_i2c_block_data(THERMOCOUPLE_1_ADDRESS, 1, 2)
-        ##val = (data[0] << 8) + data[1]
-        ##return val/5.00*9.00/5.00+32.00
-        return float(183.3)##float(input("Please enter current grill temp: "))
+        data = bus.read_i2c_block_data(THERMOCOUPLE_1_ADDRESS, 1, 2)
+        val = (data[0] << 8) + data[1]
+        return val/5.00*9.00/5.00+32.00
+        #return float(input("Please enter current grill temp: "))
     except Exception as e:
         smartPrint("***** Warning: Failed to gather data from device (Grill Temperature). Exception: %s" % str(e))
         raise
@@ -150,11 +151,10 @@ def get_current_Grill_temp():
 
 def get_current_Meat_temp(): 
     try:
-        ###data = bus.read_i2c_block_data(THERMOCOUPLE_2_ADDRESS, 1, 2)
-        ##val = (data[0] << 8) + data[1]
-        ##return val/5.00*9.00/5.00+32.00
-        #return float(105)#float(input("Please enter current meat temp: "))
-        return float(input("Please enter current meat temp: "))
+        data = bus.read_i2c_block_data(THERMOCOUPLE_2_ADDRESS, 1, 2)
+        val = (data[0] << 8) + data[1]
+        return val/5.00*9.00/5.00+32.00
+        #return float(input("Please enter current meat temp: "))        
     except Exception as e:
         smartPrint("***** Warning: Failed to gather data from device (Meat Temperature). Exception: %s" % str(e))
         raise
@@ -164,8 +164,7 @@ def get_current_Meat_temp():
 def turn_heat_on():
     try:
         smartPrint("\tRelay: Turning Fan On at %s" % datetime.datetime.now().time())
-        ###GPIO.output(2, GPIO.LOW)
-        ##call(["temp_relay_on", "hot"])
+        GPIO.output(GPIO_RELAY_FAN_PIN, GPIO.LOW)        
     except Exception as e:
         smartPrint("***** Warning: Failed to interract with device (Relay On). Exception: %s" % str(e))
         raise
@@ -175,8 +174,7 @@ def turn_heat_on():
 def turn_heat_off():
     try:
         smartPrint("\tRelay: Turning Fan Off at %s" % datetime.datetime.now().time())
-        ###GPIO.output(2, GPIO.HIGH)
-        ##call(["temp_relay_off", "hot"])
+        GPIO.output(GPIO_RELAY_FAN_PIN, GPIO.HIGH)        
     except Exception as e:
         smartPrint("***** Warning: Failed to interract with device (Relay Off). Exception: %s" % str(e))
         raise
@@ -292,6 +290,7 @@ def PID_Control_Loop(desiredGrillTemp, desiredMeatTemp, alertEmail, alertFrequen
             turn_heat_off()
         else:
             smartPrint("Leaving the Heat OFF")
+            
         elapsedTime = time.time() - startTime  # elapsedTime is in seconds and it accounts for the time spend with the fan on
         if elapsedTime > loopInterval:
             # we have a problem here since it is taking longer to run the loop. sleep a token 5 seconds
@@ -345,8 +344,8 @@ def main(argv):
             smartPrint(x)
             sleep(1)
         main(sys.argv[1:])
-    ###finally:
-        ###GPIO.cleanup()
+    finally:
+        GPIO.cleanup()
 
 #================================================================#
 

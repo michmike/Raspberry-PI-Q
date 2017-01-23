@@ -17,13 +17,14 @@ for i in pinList:
 SleepTimeL = 2
 
 try:
-    for i in pinList: 
-        print("turning on")
-        GPIO.output(i, GPIO.LOW)
-        time.sleep(SleepTimeL); 
-        print("turning off")
-        GPIO.output(i, GPIO.HIGH)
-        time.sleep(SleepTimeL); 
+    while 1 == 1:
+        for i in pinList: 
+            print("turning on")
+            GPIO.output(i, GPIO.LOW)
+            time.sleep(SleepTimeL); 
+            print("turning off")
+            GPIO.output(i, GPIO.HIGH)
+            time.sleep(SleepTimeL); 
     
     GPIO.cleanup()
     print("finished cleanup")
@@ -31,6 +32,4 @@ try:
 # End program cleanly with keyboard
 except KeyboardInterrupt:
     print("quit")
-
-# Reset GPIO settings
-GPIO.cleanup()
+    GPIO.cleanup()

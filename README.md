@@ -42,3 +42,19 @@ If you are looking for non-DIY alternatives, the products from [BBQ Guru](http:/
 
 
 ## Pictures
+![Relay and Power Wiring](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_001929.jpg)
+![Fan](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002004.jpg)
+![Wiring of Ground, VCC, and Relay #2](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002454.jpg)
+![Robogaia board pass-through connection to 5v power and ground](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002514.jpg)
+![Thermocouples on the robogaia dual board](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002521.jpg)
+![GPIO 26 connection to the relay #2](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002602.jpg)
+![PIN layout for Raspberry](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/RaspberryPI2_PIN_layout.jpg)
+![PIN layout for Raspberry](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/RaspberryPI3_PIN_layout.jpg)
+![Example email alert](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/email-alert.png)
+![Fan adaptor to fit Big Green Egg style grills](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/fan-adaptor-for-big-green-egg.jpg)
+![Inactivity outside-in monitoring alert](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/outside-in-monitoring.png)
+![Parts](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/parts.jpg)
+
+
+
+

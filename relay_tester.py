@@ -21,23 +21,23 @@ SleepTimeL = 2
 
 try:
   GPIO.output(2, GPIO.LOW)
-  print "ONE"
+  print("one")
   time.sleep(SleepTimeL); 
   GPIO.output(3, GPIO.LOW)
-  print "TWO"
+  print("2")
   time.sleep(SleepTimeL);  
   GPIO.output(4, GPIO.LOW)
-  print "THREE"
+  print("3")
   time.sleep(SleepTimeL);
   GPIO.output(26, GPIO.LOW)
-  print "FOUR"
+  print("4")
   time.sleep(SleepTimeL);
   GPIO.cleanup()
-  print "Good bye!"
+  print("the end")
 
 # End program cleanly with keyboard
 except KeyboardInterrupt:
-  print "  Quit"
+  print("quit")
 
   # Reset GPIO settings
   GPIO.cleanup()

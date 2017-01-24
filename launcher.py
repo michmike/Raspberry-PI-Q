@@ -1,4 +1,9 @@
 import os
+import time
+from time import sleep
+import datetime
+
+sleep(180) # start by sleeping for 3 mins to allow for wifi/internet connectivity
 
 os.chdir("/home/pi/Raspberry-PI-Q")
 os.system("sudo git pull")

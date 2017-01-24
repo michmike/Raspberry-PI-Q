@@ -10,7 +10,6 @@ Heavily influenced by @justindean and his [PitmasterPI](https://github.com/justi
 The biggest difference of this project from the one @justindean created is the fact that i wanted to be able to have two thermocouples so that i can also monitor the temperature of the meat. Using simple growth rate math, I can use all these data to predict when my BBQ would reach the desired temperature. The updated BOM is listed below.
 
 ## Bill of Materials (BOM)
-
 | Functionality | Item | Price | Link |
 | ------------- | ---- | ----- | ---- |
 | Computer | Raspberry Pi 3 Model B Motherboard | $41 | https://www.amazon.com/Raspberry-Pi-RASP-PI-3-Model-Motherboard/dp/B01CD5VC92 |
@@ -87,12 +86,12 @@ You only need to perform the following steps once!
     * to :
       * #blacklist spi-bcm2708
       * #blacklist i2c-bcm2708
-  * Make sure i2c is enabled for the RPI
+  * Make sure i2c is enabled for the RPI. You can alternatively enable it using the GUI and the advanced options of "sudo raspi-config" as per https://www.raspberrypi.org/documentation/configuration/raspi-config.md
     * sudo i2cdetect -y 1
     * sudo nano /boot/config.txt and uncomment lines below      
       * dtparam=i2c_arm=on		
-    * Run "sudo python3 dual_read_temperature_fahrenheit.py" from the source code below to test the thermocouples
-* Install dweepy
+  * Run "sudo python3 dual_read_temperature_fahrenheit.py" from the source code below to test the thermocouples
+* Install dweepy, a library needed by Dweet.io
   * sudo python3 -m pip install dweepy
 * Use crontab to create a reboot/startup task
   * crontab -e [will open up a file. use nano as the editor]	
@@ -105,8 +104,8 @@ You only need to perform the following steps once!
   * cd /home/pi
   * sudo git clone https://github.com/michmike/Raspberry-PI-Q.git  
 * Enable wifi using graphical interface as per https://www.raspberrypi.org/learning/software-guide/wifi/
-  * sudo nano /etc/wpa_supplicant/wpa_supplicant.conf 
-* Create webserver
+  * sudo nano /etc/wpa_supplicant/wpa_supplicant.conf [to ensure changes are set]
+* Create a webserver and enable PHP
   * sudo apt-get install apache2 php5 libapache2-mod-php5
   * sudo service apache2 restart
   * cd /var/www/html
@@ -126,7 +125,6 @@ You only need to perform the following steps once!
 		 * A value condition event notification so that you are notified if your meat or grill falls out of any specific ranges
 		 * A latency event so that you are notified immediately if data is not coming from the RPI, which means something went wrong. This is a very simplistic type of outside-in monitoring
 
-
 ## Source Code
 | File | Description |
 | ------------- | ---- |
@@ -140,8 +138,31 @@ You only need to perform the following steps once!
 | dual_read_temperature_fahrenheit.py | |
 
 ## Startup Operations
-Perform these steps every time you grill!
-
+**__Perform these steps every time you grill!__**
+* SSH using putty.exe (https://the.earth.li/~sgtatham/putty/latest/x86/putty.exe to download)
+  * IP address: 192.168.1.13. Find it using https://dweet.io/follow/Raspberry-PI-Q-IPAddress 3-4 minutes after your device starts
+  * Username: pi
+  * Password: [whatever you set in the instructions above]
+* cd /home/pi/Raspberry-PI-Q/
+* Run the command to start the Raspberry-PI-Q
+  * sudo python3 Raspberry-PI-Q.py 180 225 125 email@address.com 5 30 Raspberry-PI-Q-Michael ff83612c-6814-466e-bd51-5d55039c184e &
+  * _All temperatures are in fahrenheit_
+  * 1st parameter: 180 is the setup temperature of the grill. The fan will run continuously until this temperature is reached
+  * 2nd parameter: 225 is the desired temperature of the grill. The program will turn on/off the fan to maintain this temperature
+  * 3rd parameter: 125 is the desired temperature of the meat. Insert the probe in the meat and we will predict the time when it will be ready
+  * 4th parameter: This is the email address for notifications. You can alternatively use 10digitphonenumber@txt.att.net or 10digitphonenumber@tmomail.net for email-to-text
+  * 5th parameter: This is the interval in minutes you want to receive regular updates and notifications. Alerts will come immediately
+  * 6th parameter: This is the interval in seconds that each loop will take. if set to 30 seconds, assume the fan will run X seconds every 30 seconds. You can adjust this for more or less fan time during your interval
+  * 7th parameter: This is the unique name for your device that you want to use for tracking analytics on Dweet, Freeboard, and Grovestreams
+    * i.e. Raspberry-PI-Q-Michael
+  * 8th parameter: This is the unique application API ID you get from your grovestreams account as per instructions above
+    * i.e. ff83612c-6814-466e-bd51-5d55039c184e
+* Press "ctrl-c" to exit the program and terminate the monitoring by Raspberry-PI-Q
+* Adjust the voltage to the fan according to weather conditions and size of grill. 4-6 volts should work great
+* Visit https://dweet.io/follow/Raspberry-PI-Q-Michael for the raw data
+* Visit freeboard.io/board/[your board id] for the dashboard
+* Visit https://www.grovestreams.com/observationStudio.html for the charts and alerts  
+* Shutdown the RPI before removing the power cord using "sudo shutdown -h now"
 
 ## Future Ideas
 Some things I want to explore for a v2 of this project include

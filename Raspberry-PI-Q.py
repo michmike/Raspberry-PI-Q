@@ -32,7 +32,7 @@ FROM_EMAIL_ADDRESS_PWD = 'Raspberry-pi-q17!'
 global GROVE_API_KEY
 GROVE_API_KEY = "<entered through arguments>"    
 global GROVE_COMPONENT_ID
-GROVE_COMPONENT_ID = "<entered through arguments>" # this is the same value as the DWEET_NAME
+GROVE_COMPONENT_ID = "<entered through arguments>" # this has the same value as the DWEET_NAME
 #================ GLOBAL VARIABLES - NEED CONFIG ================#
 
 #==================== FIXED GLOBAL VARIABLES ====================#
@@ -47,6 +47,14 @@ for i in pinList:
 THERMOCOUPLE_1_ADDRESS = 0x4c #I2C address for Robogaia dual thermocouple
 THERMOCOUPLE_2_ADDRESS = 0x4f #I2C address for Robogaia dual thermocouple
 #==================== FIXED GLOBAL VARIABLES ====================#
+
+#=================== OTHER GLOBAL VARIABLES  ====================#
+global groveUpdateStartTime
+groveUpdateStartTime = time.time()
+GROVESTREAMS_UPDATE_INTERVAL_MINS = 3
+#=================== OTHER GLOBAL VARIABLES  ====================#
+
+#================================================================#
 
 def log_grovestreams_data(currGrillTemp, currMeatTemp):
     base_url = '/api/feed?'   
@@ -120,8 +128,13 @@ Subject: %s
 #================================================================#
 
 def log_data(currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTemp, timeLeft):
+    elapsedTimeForNotification = time.time() - groveUpdateStartTime
+    if (elapsedTimeForNotification / 60) > GROVESTREAMS_UPDATE_INTERVAL_MINS:
+        log_grovestreams_data(currGrillTemp, currMeatTemp)
+        global groveUpdateStartTime
+        groveUpdateStartTime = time.time() # reset the timer
+
     log_dweety_data(currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTemp, timeLeft)
-    ###log_grovestreams_data(currGrillTemp, currMeatTemp)
 
 #================================================================#
 

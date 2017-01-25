@@ -1,5 +1,11 @@
 #!/usr/bin/python
 
+#================================================================#
+# Implemented by Michael Michael http://www.github.com/michmike
+# Under MIT License
+# https://raw.githubusercontent.com/michmike/Raspberry-PI-Q/master/LICENSE
+#================================================================#
+
 import smbus
 import time
 import datetime

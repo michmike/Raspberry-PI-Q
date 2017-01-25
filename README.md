@@ -109,6 +109,8 @@ You only need to perform the following steps once!
   * sudo apt-get install git
   * cd /home/pi
   * sudo git clone https://github.com/michmike/Raspberry-PI-Q.git  
+  * sudo git status [get status of files locally]
+  * sudo git reset --hard [reverts any local changes - *Use Carefully*]
 * Enable wifi using graphical interface as per https://www.raspberrypi.org/learning/software-guide/wifi/
   * sudo nano /etc/wpa_supplicant/wpa_supplicant.conf [to ensure changes are set]
 * Create a webserver and enable PHP

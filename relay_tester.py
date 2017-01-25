@@ -19,8 +19,8 @@ for i in pinList:
     GPIO.setup(i, GPIO.OUT) 
     GPIO.output(i, GPIO.HIGH)
 
-# time to sleep between operations in the main loop
-SleepTimeL = 2
+# time to sleep in seconds between operations in the main loop
+SleepTimeL = 20
 
 try:
     while 1 == 1:

@@ -269,7 +269,10 @@ def PID_Control_Loop(desiredGrillTemp, desiredMeatTemp, alertEmail, alertFrequen
         currGrillTemp = float(get_current_Grill_temp())
         
         difference = desiredGrillTemp - currGrillTemp
-        leaveTheFanOnTime = math.log(difference)
+        if (difference < 0):
+            leaveTheFanOnTime = 0
+        else:
+            leaveTheFanOnTime = math.log(difference)
 
         historicalTemps[(arrayIndex % GROWTH_RATE_RANGE)] = currMeatTemp
         timeLeft = calculate_time_left(arrayIndex, currMeatTemp, desiredMeatTemp, historicalTemps, loopInterval)

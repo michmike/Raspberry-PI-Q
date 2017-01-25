@@ -46,7 +46,7 @@ If you are looking for non-DIY alternatives, the products from [BBQ Guru](http:/
   * Run "sudo python3 relay_tester.py" from the source code below to test the relay on/off operations
 * Splice the power source for the 12v DC power source for the fan and have it go through the relay IN2 so that the relay can control the on/off power supply for the fan
 * Connect the two K thermocouples to the correct +/- on the Robogaia plate
-* Connect the power supply to the RPI. Micro-usb power supply has to be at least 2 amps
+* Connect the power supply to the RPI. Micro-USB power supply has to be at least 2 amps
  
 ## Setting up the Raspberry PI 3 Model B
 You only need to perform the following steps once!
@@ -139,7 +139,7 @@ You only need to perform the following steps once!
 | launcher.py | This is the python script executed at reboot of the RPI and it refreshes the code from the github repo as well as call the email address program below |
 | email_IP_address.py | This is a python program that will email and use dweet.io to update the current IP address of the RPI |
 | Freeboard_HTML_MeatChart.txt | This is the sample freeboard.io HTML section for advice on best cooking temperatures |
-| Freeboard_HTML_Dashboard | This is the sample freeboard.io HTML section for the custom temperature dashboard | 
+| Freeboard_HTML_Dashboard.txt | This is the sample freeboard.io HTML section for the custom temperature dashboard | 
 | relay_tester.py | This is a python program to test the relay by turning it on and off every few seconds |
 | dual_read_temperature_fahrenheit.py | This is a python program to test the dual thermocouple plate by capturing and printing the current temperature of each thermocouple every few seconds |
 

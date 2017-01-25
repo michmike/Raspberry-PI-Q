@@ -44,8 +44,8 @@ for i in pinList:
     GPIO.setup(i, GPIO.OUT) 
     GPIO.output(i, GPIO.HIGH)
 
-THERMOCOUPLE_1_ADDRESS = 0x4c #I2C address for Robogaia dual thermocouple
-THERMOCOUPLE_2_ADDRESS = 0x4f #I2C address for Robogaia dual thermocouple
+THERMOCOUPLE_2_ADDRESS = 0x4c #I2C address for Robogaia dual thermocouple
+THERMOCOUPLE_1_ADDRESS = 0x4f #I2C address for Robogaia dual thermocouple
 #==================== FIXED GLOBAL VARIABLES ====================#
 
 #=================== OTHER GLOBAL VARIABLES  ====================#

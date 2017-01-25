@@ -32,7 +32,7 @@ text-align:left;
 		$uniqueName = $_POST['uniqueName'];
 		$GROVE_API_KEY = $_POST['GROVE_API_KEY'];
 		
-		$command = "sudo python3 Raspberry-PI-Q.py " . $grillSetupTemp . " " . $desiredGrillTemp . " " . $desiredMeatTemp . " " . $alertEmail . " " . $alertFrequency . " " . $loopInterval . " " . $uniqueName . " " . $GROVE_API_KEY 
+		$command = "sudo python3 Raspberry-PI-Q.py " . $grillSetupTemp . " " . $desiredGrillTemp . " " . $desiredMeatTemp . " " . $alertEmail . " " . $alertFrequency . " " . $loopInterval . " " . $uniqueName . " " . $GROVE_API_KEY . " &" 
 		echo $command
 		//exec($command);
 	}
@@ -45,7 +45,7 @@ text-align:left;
 
 <body>
 	<h1>Raspberry-PI-Q Input Parameters</h1>
-	<h3>Example invocation: sudo python3 Raspberry-PI-Q.py 180 225 125 email@address.com 5 30 Raspberry-PI-Q-Michael groove-api-guid</h3>
+	<h3>Example invocation: sudo python3 Raspberry-PI-Q.py 180 225 125 email@address.com 5 30 Raspberry-PI-Q-Michael groove-api-guid &</h3>
 	welcome fulls <?php echo $command ?><br>
 	<form method="post">
 		<table>		

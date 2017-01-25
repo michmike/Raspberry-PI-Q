@@ -290,7 +290,7 @@ def PID_Control_Loop(desiredGrillTemp, desiredMeatTemp, alertEmail, alertFrequen
             turn_heat_off()
         else:
             smartPrint("Leaving the Heat OFF")
-            
+
         elapsedTime = time.time() - startTime  # elapsedTime is in seconds and it accounts for the time spend with the fan on
         if elapsedTime > loopInterval:
             # we have a problem here since it is taking longer to run the loop. sleep a token 5 seconds
@@ -305,8 +305,8 @@ def PID_Control_Loop(desiredGrillTemp, desiredMeatTemp, alertEmail, alertFrequen
 
 def main(argv):    
     if len(sys.argv) < 9:
-        smartPrint("Usage: Raspberry-PI-Q.py [setup temperature to reach with continuous air] [grill temperature] [meat temperature] [alert email] [frequency of notifications in minutes] [loop interval in seconds; recommended 60] [unique name for your device; like Raspberry-PI-Q-Michael] [secret API key for grovestreams]")
-        # example Raspberry-PI-Q.py 180 225 135 michmike@outlook.com 5 30 Raspberry-PI-Q-Michael 56fe42c9-4b68-3965-bf89-cc0160caa4c6
+        smartPrint("Usage: Raspberry-PI-Q.py [setup temperature to reach with continuous air] [grill temperature] [meat temperature] [alert email] [frequency of notifications in minutes] [loop interval in seconds; recommended 60] [unique name for your device; like Raspberry-PI-Q-Michael] [secret API key for grovestreams] &")
+        # example: sudo python3 Raspberry-PI-Q.py 180 225 125 email@address.com 5 30 Raspberry-PI-Q-Michael groove-api-guid &
         # ATT email-to-text is 10digitphonenumber@txt.att.net
         # TMobile email-to-text is 10digitphonenumber@tmomail.net
 
@@ -327,7 +327,7 @@ def main(argv):
         
     except ValueError:
         smartPrint("One of the arguments was invalid")
-        smartPrint("Usage: Raspberry-PI-Q.py [setup temperature to reach with continuous air] [grill temperature] [meat temperature] [alert email] [frequency of notifications in minutes] [loop interval in seconds; recommended 60] [unique name for your device; like Raspberry-PI-Q-Michael] [secret API key for grovestreams]")
+        smartPrint("Usage: Raspberry-PI-Q.py [setup temperature to reach with continuous air] [grill temperature] [meat temperature] [alert email] [frequency of notifications in minutes] [loop interval in seconds; recommended 60] [unique name for your device; like Raspberry-PI-Q-Michael] [secret API key for grovestreams] &")
         sys.exit(1)
     smartPrint("grillSetupTemp=%d, desiredGrillTemp=%d, desiredMeatTemp=%d, alertEmail=%s, alertFrequency=%d, loopInterval=%d, DWEET_NAME=%s, GROVE_API_KEY=%s" % (grillSetupTemp, desiredGrillTemp, desiredMeatTemp, alertEmail, alertFrequency, loopInterval, DWEET_NAME, GROVE_API_KEY))
     

@@ -1,0 +1,5 @@
+"<b>KPIs</b><hr><table border=1><tr><td></td><td>Current</td><td>Desired</td></tr>" + 
+"<tr><td>Grill Temperature (Fahrenheit)</td><td>" + datasources["Raspberry-PI-Q-Michael"]["content"]["currGrillTemp"] + "</td><td>" + datasources["Raspberry-PI-Q-Michael"]["content"]["desiredGrillTemp"] + "</td></tr>" + 
+"<tr><td>Meat Temperature (Fahrenheit)</td><td>" + datasources["Raspberry-PI-Q-Michael"]["content"]["currMeatTemp"] + "</td><td>" + datasources["Raspberry-PI-Q-Michael"]["content"]["desiredMeatTemp"] + "</td></tr>" + 
+"<tr><td>Time Left (Mins)</td><td>" + datasources["Raspberry-PI-Q-Michael"]["content"]["timeLeft"] + "</td><td></td></tr>" + 
+"</table><hr>"

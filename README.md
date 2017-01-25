@@ -111,8 +111,20 @@ You only need to perform the following steps once!
   * sudo git clone https://github.com/michmike/Raspberry-PI-Q.git  
   * sudo git status [get status of files locally]
   * sudo git reset --hard [reverts any local changes - *Use Carefully*]
-* Enable wifi using graphical interface as per https://www.raspberrypi.org/learning/software-guide/wifi/
-  * sudo nano /etc/wpa_supplicant/wpa_supplicant.conf [to ensure changes are set]
+* Enable wifi using graphical interface as per https://www.raspberrypi.org/learning/software-guide/wifi/ or using the command line as per https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md
+  * sudo iwlist wlan0 scan | grep ESSID
+  * sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+  * Enter the following details on the file
+ ```
+ network={  
+     ssid="[wifi access point name, ESSID]"  
+     psk="[wifi password]"  
+ }  
+ ```
+  * sudo ifdown wlan0 [optional]
+  * sudo ifup wlan0 [optional]
+  * sudo reboot
+  * ifconfig wlan0
 * Create a webserver and enable PHP
   * sudo apt-get install apache2 php5 libapache2-mod-php5
   * sudo service apache2 restart

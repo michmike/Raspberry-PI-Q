@@ -69,13 +69,11 @@ You only need to perform the following steps once!
   * `hostname -I` [to get the IP address]
   * You can now SSH into the RPI using username `pi@192.168.1.5` or simply `pi` and the password you set above
 * Configure networking and DNS servers if necessary
-  * `sudo pico /etc/network/interfaces`
-```
-auto eth0
-iface eth0 inet dhcp
-[4spaces]dns-search google.com
-[4spaces]dns-nameservers 192.168.1.254
-```
+  * `sudo pico /etc/network/interfaces` [update the file with the following lines, substituting 192.168.1.254 for your DNS server]
+    * `auto eth0`
+    * `iface eth0 inet dhcp`
+    * `[4spaces]dns-search google.com`
+    * `[4spaces]dns-nameservers 192.168.1.254`
   * `sudo /etc/init.d/networking restart`
   * `cat /etc/resolv.conf` [verify nameserver is set]
   * `sudo route -n` [verify routes are set]
@@ -83,38 +81,27 @@ iface eth0 inet dhcp
 * Use the instructions to enable i2c needed by the thermocouple plate as per http://www.robogaia.com/raspberry-pi-dual-thermocouple-plate.html
   * `sudo apt-get install python-smbus`
   * `sudo apt-get install i2c-tools`
-  * `sudo nano /etc/modules` (opens a file)
+  * `sudo nano /etc/modules` [opens a file]
     * Add  to the end of the file /etc/modules these lines (if those are not present already)
-```
-i2c-dev
-i2c-bcm2708
-```
+      * `i2c-dev`
+      * `i2c-bcm2708`
   * `sudo nano /etc/modprobe.d/raspi-blacklist.conf`
     * Change:
-```
-blacklist spi-bcm2708
-blacklist i2c-bcm2708
-```
+      * `blacklist spi-bcm2708`
+      * `blacklist i2c-bcm2708`
     * To:
-```
-#blacklist spi-bcm2708
-#blacklist i2c-bcm2708
-```
+      * `#blacklist spi-bcm2708`
+      * `#blacklist i2c-bcm2708`
   * Make sure i2c is enabled for the RPI. You can alternatively enable it using the GUI and the advanced options of `sudo raspi-config` as per https://www.raspberrypi.org/documentation/configuration/raspi-config.md
     * `sudo i2cdetect -y 1`
     * `sudo nano /boot/config.txt` and uncomment the line below
-```
-dtparam=i2c_arm=on
-```
+      * `dtparam=i2c_arm=on`
   * Run `sudo python3 dual_read_temperature_fahrenheit.py` from the source code below to test the thermocouples
 * Install dweepy, a library needed by Dweet.io
   * `sudo python3 -m pip install dweepy`
 * Use crontab to create a reboot/startup task
-  * `crontab -e` [will open up a file. use nano as the editor]	
-    * Insert the following line to this file
-```
-@reboot sudo python3 /home/pi/Raspberry-PI-Q/launcher.py &
-```
+  * `crontab -e` [will open up a file. use nano as the editor, and insert the following line]	
+    * `@reboot sudo python3 /home/pi/Raspberry-PI-Q/launcher.py &`
   * `crontab -l` [to see the changes]
   * `service cron status` [to see active jobs]
 * Install git and pull down the repo for this project

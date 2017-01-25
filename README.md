@@ -122,6 +122,7 @@ You only need to perform the following steps once!
 * Install Visual Studio Code with the python extension from https://marketplace.visualstudio.com/items?itemName=donjayamanne.python
 * Install PIP as per instructions from https://pip.pypa.io/en/stable/installing/
 * Create an account with www.dweet.io and www.freeboard.io. You don't need to pay for a locked object. You can create your own board and save it with your own dashboard analytics for this project
+  * Use the two files below to enhance and create your own html-based dashboards on freeboard
 * Create an account with www.gmx.com to get a free email address
 * Create an account with www.grovestreams.com. 
   * Create an organization and under advanced enable the "Raspberry PI Metrics" blueprint
@@ -138,8 +139,8 @@ You only need to perform the following steps once!
 | index.html | Simple PHP webpage to control the startup and teardown of the Raspberry-PI-Q python program |
 | launcher.py | This is the python script executed at reboot of the RPI and it refreshes the code from the github repo as well as call the email address program below |
 | email_IP_address.py | This is a python program that will email and use dweet.io to update the current IP address of the RPI |
-| Freeboard_HTML_MeatChart.txt | This is the sample freeboard.io HTML section for advice on best cooking temperatures |
-| Freeboard_HTML_Dashboard.txt | This is the sample freeboard.io HTML section for the custom temperature dashboard | 
+| Freeboard_HTML_MeatChart.txt | This is the sample freeboard.io HTML section for advice on best cooking temperatures. Copy the file contents and create an html-based dashboard on freeboard.io |
+| Freeboard_HTML_Dashboard.txt | This is the sample freeboard.io HTML section for the custom temperature dashboard. Copy the file contents and create an html-based dashboard on freeboard.io | 
 | relay_tester.py | This is a python program to test the relay by turning it on and off every few seconds |
 | dual_read_temperature_fahrenheit.py | This is a python program to test the dual thermocouple plate by capturing and printing the current temperature of each thermocouple every few seconds |
 

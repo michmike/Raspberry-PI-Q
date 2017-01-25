@@ -43,7 +43,7 @@ If you are looking for non-DIY alternatives, the products from [BBQ Guru](http:/
     * Connect a wire from the 5V pin on your device (pin #2) to the VCC pin that is adjacent to IN4 (not the one next to JD-VCC!)
     * Finally hook the GPIO 26 (pin #37) up to IN2 
     * Set the pin to 'low' or 0V in the software to activate and 'high' or 3.3V-5V to deactivate
-  * Run "sudo python3 relay_tester.py" from the source code below to test the relay on/off operations
+  * Run `sudo python3 relay_tester.py` from the source code below to test the relay on/off operations
 * Splice the power source for the 12v DC power source for the fan and have it go through the relay IN2 so that the relay can control the on/off power supply for the fan
 * Connect the two K thermocouples to the correct +/- on the Robogaia plate
 * Connect the power supply to the RPI. Micro-USB power supply has to be at least 2 amps
@@ -58,62 +58,74 @@ You only need to perform the following steps once!
   * Pick Raspian (the full operating system) and select Install
   * Follow the instructions to set up the RPI on first boot and eventually it will boot to the graphical user interface
 * Update to the latest software as per https://www.raspberrypi.org/learning/software-guide/update-sd-card/
-  * sudo apt-get update
-  * sudo apt-get upgrade
+  * `sudo apt-get update`
+  * `sudo apt-get upgrade`
 * You should change your default password (i.e. raspberry) as per https://www.raspberrypi.org/documentation/linux/usage/users.md
-  * passwd 
+  * `passwd`
 * SSH into the RPI as per https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md and https://www.raspberrypi.org/documentation/remote-access/ssh/
-  * sudo raspi-config
+  * `sudo raspi-config`
   * Pick Advanced options>ssh>Enable
-  * sudo reboot
-  * hostname -I [to get the IP address]
-  * You can now SSH into the RPI using username "pi@192.168.1.5" or simply "pi" and the password you set above
+  * `sudo reboot`
+  * `hostname -I` [to get the IP address]
+  * You can now SSH into the RPI using username `pi@192.168.1.5` or simply `pi` and the password you set above
 * Configure networking and DNS servers if necessary
-  * sudo pico /etc/network/interfaces
-    * auto eth0
-    * iface eth0 inet dhcp
-    * [4spaces]dns-search google.com
-    * [4spaces]dns-nameservers 192.168.1.254
-  * sudo /etc/init.d/networking restart
-  * cat /etc/resolv.conf [verify nameserver is set]
-  * sudo route -n [verify routes are set]
-  * ip route show [verify routes are set]
+  * `sudo pico /etc/network/interfaces`
+```
+auto eth0
+iface eth0 inet dhcp
+[4spaces]dns-search google.com
+[4spaces]dns-nameservers 192.168.1.254
+```
+  * `sudo /etc/init.d/networking restart`
+  * `cat /etc/resolv.conf` [verify nameserver is set]
+  * `sudo route -n` [verify routes are set]
+  * `ip route show` [verify routes are set]
 * Use the instructions to enable i2c needed by the thermocouple plate as per http://www.robogaia.com/raspberry-pi-dual-thermocouple-plate.html
-  * sudo apt-get install python-smbus
-  * sudo apt-get install i2c-tools
-  * sudo nano /etc/modules (opens a file)
+  * `sudo apt-get install python-smbus`
+  * `sudo apt-get install i2c-tools`
+  * `sudo nano /etc/modules` (opens a file)
     * Add  to the end of the file /etc/modules these lines (if those are not present already)
-      * i2c-dev
-      * i2c-bcm2708
-  * sudo nano /etc/modprobe.d/raspi-blacklist.conf
+```
+i2c-dev
+i2c-bcm2708
+```
+  * `sudo nano /etc/modprobe.d/raspi-blacklist.conf`
     * Change:
-      * blacklist spi-bcm2708
-      * blacklist i2c-bcm2708
+```
+blacklist spi-bcm2708
+blacklist i2c-bcm2708
+```
     * To:
-      * #blacklist spi-bcm2708
-      * #blacklist i2c-bcm2708
-  * Make sure i2c is enabled for the RPI. You can alternatively enable it using the GUI and the advanced options of "sudo raspi-config" as per https://www.raspberrypi.org/documentation/configuration/raspi-config.md
-    * sudo i2cdetect -y 1
-    * "sudo nano /boot/config.txt" and uncomment lines below
-      * dtparam=i2c_arm=on
-  * Run "sudo python3 dual_read_temperature_fahrenheit.py" from the source code below to test the thermocouples
+```
+#blacklist spi-bcm2708
+#blacklist i2c-bcm2708
+```
+  * Make sure i2c is enabled for the RPI. You can alternatively enable it using the GUI and the advanced options of `sudo raspi-config` as per https://www.raspberrypi.org/documentation/configuration/raspi-config.md
+    * `sudo i2cdetect -y 1`
+    * `sudo nano /boot/config.txt` and uncomment the line below
+```
+dtparam=i2c_arm=on
+```
+  * Run `sudo python3 dual_read_temperature_fahrenheit.py` from the source code below to test the thermocouples
 * Install dweepy, a library needed by Dweet.io
-  * sudo python3 -m pip install dweepy
+  * `sudo python3 -m pip install dweepy`
 * Use crontab to create a reboot/startup task
-  * crontab -e [will open up a file. use nano as the editor]	
+  * `crontab -e` [will open up a file. use nano as the editor]	
     * Insert the following line to this file
-      * @reboot sudo python3 /home/pi/Raspberry-PI-Q/launcher.py &
-  * crontab -l [to see the changes]
-  * service cron status [to see active jobs]
+```
+@reboot sudo python3 /home/pi/Raspberry-PI-Q/launcher.py &
+```
+  * `crontab -l` [to see the changes]
+  * `service cron status` [to see active jobs]
 * Install git and pull down the repo for this project
-  * sudo apt-get install git
-  * cd /home/pi
-  * sudo git clone https://github.com/michmike/Raspberry-PI-Q.git  
-  * sudo git status [get status of files locally]
-  * sudo git reset --hard [reverts any local changes - *Use Carefully*]
+  * `sudo apt-get install git`
+  * `cd /home/pi`
+  * `sudo git clone https://github.com/michmike/Raspberry-PI-Q.git`
+  * `sudo git status` [get status of files locally]
+  * `sudo git reset --hard` [reverts any local changes - *Use Carefully*]
 * Enable wifi using graphical interface as per https://www.raspberrypi.org/learning/software-guide/wifi/ or using the command line as per https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md
-  * sudo iwlist wlan0 scan | grep ESSID
-  * sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+  * `sudo iwlist wlan0 scan | grep ESSID`
+  * `sudo nano /etc/wpa_supplicant/wpa_supplicant.conf`
   * Enter the following details on the file
  ```
  network={  
@@ -121,15 +133,15 @@ You only need to perform the following steps once!
      psk="[wifi password]"  
  }  
  ```
-  * sudo ifdown wlan0 [optional]
-  * sudo ifup wlan0 [optional]
-  * sudo reboot
-  * ifconfig wlan0
+  * `sudo ifdown wlan0` [optional]
+  * `sudo ifup wlan0` [optional]
+  * `sudo reboot`
+  * `ifconfig wlan0` [verify you were able to get an IP Address for the wifi connection]
 * Create a webserver and enable PHP
-  * sudo apt-get install apache2 php5 libapache2-mod-php5
-  * sudo service apache2 restart
-  * cd /var/www/html
-  * sudo cp /home/pi/Raspberry-PI-Q/index.html /var/www/html/.
+  * `sudo apt-get install apache2 php5 libapache2-mod-php5`
+  * `sudo service apache2 restart`
+  * `cd /var/www/html`
+  * `sudo cp /home/pi/Raspberry-PI-Q/index.html /var/www/html/.`
 
 ## Development Instructions
 * Install Python for Windows
@@ -167,10 +179,10 @@ You only need to perform the following steps once!
 * SSH using putty.exe (https://the.earth.li/~sgtatham/putty/latest/x86/putty.exe to download)
   * IP address: 192.168.1.13. Find it using https://dweet.io/follow/Raspberry-PI-Q-IPAddress 3-4 minutes after your device starts
   * Username: pi
-  * Password: [whatever you set in the instructions above]
-* cd /home/pi/Raspberry-PI-Q/
+  * Password: [whatever you set in the instructions to update the password above]
+* `cd /home/pi/Raspberry-PI-Q/`
 * Run the command to start the Raspberry-PI-Q
-  * sudo python3 Raspberry-PI-Q.py 180 225 125 email@address.com 5 30 Raspberry-PI-Q-Michael ff83612c-6814-466e-bd51-5d55039c184e &
+  * `sudo python3 Raspberry-PI-Q.py 180 225 125 email@address.com 5 30 Raspberry-PI-Q-Michael ff83612c-6814-466e-bd51-5d55039c184e &`
   * _All temperatures are in fahrenheit_
   * 1st parameter: 180 is the setup temperature of the grill. The fan will run continuously until this temperature is reached
   * 2nd parameter: 225 is the desired temperature of the grill. The program will turn on/off the fan to maintain this temperature
@@ -182,12 +194,12 @@ You only need to perform the following steps once!
     * i.e. Raspberry-PI-Q-Michael
   * 8th parameter: This is the unique application API ID you get from your grovestreams account as per instructions above
     * i.e. ff83612c-6814-466e-bd51-5d55039c184e
-* Press "ctrl-c" to exit the program and terminate the monitoring by Raspberry-PI-Q
+* Press `ctrl-c` to exit the program and terminate the monitoring by Raspberry-PI-Q
 * Adjust the voltage to the fan according to weather conditions and size of grill. 4-6 volts should work great
-* Visit https://dweet.io/follow/Raspberry-PI-Q-Michael for the raw data
-* Visit freeboard.io/board/[your board id] for the dashboard
+* Visit https://dweet.io/follow/Raspberry-PI-Q-Michael [Change the URL to match your 7th parameter] for the raw data
+* Visit freeboard.io/board/[your board id that you created earlier] for the dashboard
 * Visit https://www.grovestreams.com/observationStudio.html for the charts and alerts  
-* Shutdown the RPI before removing the power cord using "sudo shutdown -h now"
+* Shutdown the RPI before removing the power cord using `sudo shutdown -h now`
 
 ## Future Ideas
 Some things I want to explore for a v2 of this project include

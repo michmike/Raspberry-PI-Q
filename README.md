@@ -30,7 +30,7 @@ If you are looking for non-DIY alternatives, the products from [BBQ Guru](http:/
 * DigiQ offers smoker and meat temperature control without any alerting/notifications or internet access for $219
 * PartyQ only offers smoker temperature control for $150
 
-## Wiring Diagram
+## Wiring Instructions
 * Look at the PIN numbers of the RPI on the pictures listed below before you get started. Also look at some of my detailed pictures and follow the color coding of the wires
 * Connect the Robogaia dual thermocouple plate
   * The plate fits flush on top of the RPI on one end of the RPI extensibility connectors. Look at the pictures below as well as the documentation at http://www.robogaia.com/raspberry-pi-dual-thermocouple-plate.html for more details

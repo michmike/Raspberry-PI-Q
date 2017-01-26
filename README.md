@@ -164,9 +164,12 @@ You only need to perform the following steps once!
 * Open the output vent on top of your egg slightly as per pictures
 * Power up the RPI and attach the power source for the fan
 * SSH using putty.exe (https://the.earth.li/~sgtatham/putty/latest/x86/putty.exe to download)
+  * Enter the IP address for your RPI as outlined below in the __Host Name__ field and then select __SSH__ and click __Open__
   * IP address: 192.168.1.13. Find it using https://dweet.io/follow/Raspberry-PI-Q-IPAddress 3-4 minutes after your device starts
+  * A terminal window will now open
   * Username: pi
   * Password: [whatever you set in the instructions to update the password above]
+* Once you login you will get access to the RPI's operating system
 * `cd /home/pi/Raspberry-PI-Q/`
 * Run the command to start the Raspberry-PI-Q
   * `sudo python3 Raspberry-PI-Q.py 180 225 125 email@address.com 5 30 Raspberry-PI-Q-Michael ff83612c-6814-466e-bd51-5d55039c184e &`

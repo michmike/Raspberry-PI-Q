@@ -129,8 +129,7 @@ Subject: %s
 
 #================================================================#
 
-def log_data(currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTemp, timeLeft):
-    global groveUpdateStartTime
+def log_data(currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTemp, timeLeft):    
     elapsedTimeForNotification = time.time() - groveUpdateStartTime
     if (elapsedTimeForNotification / 60) > GROVESTREAMS_UPDATE_INTERVAL_MINS:
         log_grovestreams_data(currGrillTemp, currMeatTemp)
@@ -367,6 +366,9 @@ def main(argv):
         GROVE_COMPONENT_ID = sys.argv[7] # notice this is the same value as the DWEET_NAME
         global GROVE_API_KEY
         GROVE_API_KEY = sys.argv[8]
+
+        global groveUpdateStartTime
+        groveUpdateStartTime = time.time() # reset the timer
         
     except ValueError:
         smartPrint("One of the arguments was invalid")

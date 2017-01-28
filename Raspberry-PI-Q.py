@@ -130,6 +130,7 @@ Subject: %s
 #================================================================#
 
 def log_data(currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTemp, timeLeft):    
+    global groveUpdateStartTime
     elapsedTimeForNotification = time.time() - groveUpdateStartTime
     if (elapsedTimeForNotification / 60) > GROVESTREAMS_UPDATE_INTERVAL_MINS:
         log_grovestreams_data(currGrillTemp, currMeatTemp)

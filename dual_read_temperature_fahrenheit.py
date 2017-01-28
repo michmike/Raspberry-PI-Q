@@ -21,6 +21,7 @@ def get_current_Grill_temp():
         data = bus.read_i2c_block_data(THERMOCOUPLE_1_ADDRESS, 1, 2)
         val = (data[0] << 8) + data[1]
         temperature = val/5.00*9.00/5.00+32.00
+        print ("grill temp %s" % temperature)
         return float("%.2f" % temperature)
     except Exception as e:
         print("***** Warning: Failed to gather data from device (Grill Temperature). Exception: %s" % str(e))
@@ -40,8 +41,8 @@ def get_current_Meat_temp():
         while counter < MAX_SAMPLES:
             print(arrayOfTemps[counter])
             counter = counter + 1
-        print ("median_grouped " % statistics.median_grouped(arrayOfTemps))
-        print ("harmonic_mean " % statistics.harmonic_mean(arrayOfTemps))
+        print ("median_grouped %s" % statistics.median_grouped(arrayOfTemps))
+        print ("harmonic_mean %s" % statistics.harmonic_mean(arrayOfTemps))
         return 10
     except Exception as e:
         print("***** Warning: Failed to gather data from device (Meat Temperature). Exception: %s" % str(e))

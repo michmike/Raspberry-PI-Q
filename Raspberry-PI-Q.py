@@ -22,7 +22,6 @@ import http.client
 import random
 import urllib.parse
 import statistics
-import config
 
 #================ GLOBAL VARIABLES - NEED CONFIG ================#
 global DWEET_NAME
@@ -52,7 +51,7 @@ NUM_TEMPERATURE_SAMPLES = 10   # How many temperature samples to take to calcula
 #==================== FIXED GLOBAL VARIABLES ====================#
 
 #=================== OTHER GLOBAL VARIABLES  ====================#
-#global groveUpdateStartTime
+global groveUpdateStartTime
 config.groveUpdateStartTime = time.time()
 GROVESTREAMS_UPDATE_INTERVAL_MINS = 3
 #=================== OTHER GLOBAL VARIABLES  ====================#
@@ -131,11 +130,10 @@ Subject: %s
 #================================================================#
 
 def log_data(currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTemp, timeLeft):    
-    #global groveUpdateStartTime
+    global groveUpdateStartTime
     elapsedTimeForNotification = time.time() - config.groveUpdateStartTime
     if (elapsedTimeForNotification / 60) > GROVESTREAMS_UPDATE_INTERVAL_MINS:
-        log_grovestreams_data(currGrillTemp, currMeatTemp)
-        #global groveUpdateStartTime
+        log_grovestreams_data(currGrillTemp, currMeatTemp)        
         config.groveUpdateStartTime = time.time() # reset the timer
 
     log_dweety_data(currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTemp, timeLeft)
@@ -369,8 +367,8 @@ def main(argv):
         global GROVE_API_KEY
         GROVE_API_KEY = sys.argv[8]
 
-        #global groveUpdateStartTime
-        #groveUpdateStartTime = time.time() # reset the timer
+        global groveUpdateStartTime
+        groveUpdateStartTime = time.time() # reset the timer
         
     except ValueError:
         smartPrint("One of the arguments was invalid")

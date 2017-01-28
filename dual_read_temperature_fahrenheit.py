@@ -41,8 +41,8 @@ def get_current_Meat_temp():
         harmonicMean = 0
         while counter < MAX_SAMPLES:
             print(arrayOfTemps[counter])
-            counter = counter + 1
             harmonicMean = harmonicMean + (1/arrayOfTemps[counter])
+            counter = counter + 1
         realMean = MAX_SAMPLES/harmonicMean
         print ("median_grouped %s" % statistics.median_grouped(arrayOfTemps))
         print ("harmonic_mean %s" % realMean)

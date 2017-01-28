@@ -10,26 +10,44 @@ import smbus
 import time
 import datetime
 
-
 bus = smbus.SMBus(1)
-
-#I2C address
-address1 = 0x4c
-address2 = 0x4f
+THERMOCOUPLE_1_ADDRESS = 0x4f #I2C address for Robogaia dual thermocouple
+THERMOCOUPLE_2_ADDRESS = 0x4c #I2C address for Robogaia dual thermocouple
+MAX_SAMPLES = 10
  
- 
-def get_celsius_val1(): 
-    data = bus.read_i2c_block_data(address1, 1,2)
-    val = (data[0] << 8) + data[1]
-    return val/5.00*9.00/5.00+32.00
+def get_current_Grill_temp(): 
+    try:
+        data = bus.read_i2c_block_data(THERMOCOUPLE_1_ADDRESS, 1, 2)
+        val = (data[0] << 8) + data[1]
+        temperature = val/5.00*9.00/5.00+32.00
+        return float("%.2f" % temperature)
+    except Exception as e:
+        print("***** Warning: Failed to gather data from device (Grill Temperature). Exception: %s" % str(e))
+        raise
 
-def get_celsius_val2():
-    data = bus.read_i2c_block_data(address2, 1,2)
-    val = (data[0] << 8) + data[1] 
-    return val/5.00*9.00/5.00+32.00
+def get_current_Meat_temp(): 
+    try:
+        counter = 0
+        arrayOfTemps = [None] * MAX_SAMPLES 
+        while counter < MAX_SAMPLES:
+            data = bus.read_i2c_block_data(THERMOCOUPLE_2_ADDRESS, 1, 2)
+            val = (data[0] << 8) + data[1]
+            temperature = val/5.00*9.00/5.00+32.00
+            arrayOfTemps[counter] = float("%.2f" % temperature)
+            counter++
+        counter = 0
+        while counter < MAX_SAMPLES:
+            print(arrayOfTempsp[counter])
+            counter++
+        print ("median_grouped " % statistics.median_grouped(arrayOfTemps))
+        print ("harmonic_mean " % statistics.harmonic_mean(arrayOfTemps))
+        return 
+    except Exception as e:
+        print("***** Warning: Failed to gather data from device (Meat Temperature). Exception: %s" % str(e))
+        raise
 
 while 1 == 1:
-    temperature1 = get_celsius_val1()
-    temperature2 = get_celsius_val2()
-    print("temperature 1 = {0:8.2f}   temperature 2 ={1:8.2f}".format(temperature1,temperature2))
+    grillTemp = get_current_Grill_temp()
+    meatTemp = get_celsius_val2()
+    print("temperature (grill) = %s, temperature (meat) = %s" % (grillTemp, meatTemp))
     time.sleep(1)

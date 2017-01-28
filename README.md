@@ -46,6 +46,7 @@ If you are looking for non-DIY alternatives, the products from [BBQ Guru](http:/
   * Run `sudo python3 relay_tester.py` from the source code below to test the relay on/off operations
 * Splice the power source for the 12v DC power source for the fan and have it go through the relay IN2 so that the relay can control the on/off power supply for the fan
 * Connect the two K thermocouples to the correct +/- on the Robogaia plate
+  * Look at the wiring pictures below that have labelled which is the Meat and which is the Grill thermocouple
 * Connect the power supply to the RPI. Micro-USB power supply has to be at least 2 amps
  
 ## Setting up the Raspberry PI 3 Model B
@@ -92,10 +93,11 @@ You only need to perform the following steps once!
     * To:
       * `#blacklist spi-bcm2708`
       * `#blacklist i2c-bcm2708`
-  * Make sure i2c is enabled for the RPI. You can alternatively enable it using the GUI and the advanced options of `sudo raspi-config` as per https://www.raspberrypi.org/documentation/configuration/raspi-config.md
-    * `sudo i2cdetect -y 1`
+  * Make sure i2c is enabled for the RPI. You can enable it using the commands below or alternatively enable it using the GUI and the advanced options of `sudo raspi-config` as per https://www.raspberrypi.org/documentation/configuration/raspi-config.md
     * `sudo nano /boot/config.txt` and uncomment the line below
       * `dtparam=i2c_arm=on`
+    * `sudo reboot`
+    * `sudo i2cdetect -y 1` to verify if i2c is enabled
   * Run `sudo python3 dual_read_temperature_fahrenheit.py` from the source code below to test the thermocouples
 * Install dweepy, a library needed by Dweet.io
   * `sudo python3 -m pip install dweepy`

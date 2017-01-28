@@ -37,7 +37,7 @@ def get_current_Meat_temp():
             counter = counter + 1
         counter = 0
         while counter < MAX_SAMPLES:
-            print(arrayOfTempsp[counter])
+            print(arrayOfTemps[counter])
             counter = counter + 1
         print ("median_grouped " % statistics.median_grouped(arrayOfTemps))
         print ("harmonic_mean " % statistics.harmonic_mean(arrayOfTemps))

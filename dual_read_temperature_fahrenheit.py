@@ -9,6 +9,7 @@
 import smbus
 import time
 import datetime
+import statistics
 
 bus = smbus.SMBus(1)
 THERMOCOUPLE_1_ADDRESS = 0x4f #I2C address for Robogaia dual thermocouple

@@ -180,7 +180,7 @@ You only need to perform the following steps once!
   * Password: [whatever you set in the instructions to update the password above]
 * Once you login you will get access to the RPI's operating system
 * `cd /home/pi/Raspberry-PI-Q/`
-* Run the command to start the Raspberry-PI-Q
+* Run the command to start the Raspberry-PI-Q. Alternatively you can visit `http://192.168.1.14/index.php` to do it from the graphical interface
   * `sudo python3 Raspberry-PI-Q.py 180 225 125 email@address.com 5 30 Raspberry-PI-Q-Michael ff83612c-6814-466e-bd51-5d55039c184e &`
   * _All temperatures are in fahrenheit_
   * 1st parameter: 180 is the setup temperature of the grill. The fan will run continuously until this temperature is reached

@@ -38,11 +38,14 @@ def get_current_Meat_temp():
             arrayOfTemps[counter] = float("%.2f" % temperature)
             counter = counter + 1
         counter = 0
+        harmonicMean = 0
         while counter < MAX_SAMPLES:
             print(arrayOfTemps[counter])
             counter = counter + 1
+            harmonicMean = harmonicMean + (1/arrayOfTemps[counter])
+        realMean = MAX_SAMPLES/harmonicMean
         print ("median_grouped %s" % statistics.median_grouped(arrayOfTemps))
-        print ("harmonic_mean %s" % statistics.harmonic_mean(arrayOfTemps))
+        print ("harmonic_mean %s" % realMean)
         return 10
     except Exception as e:
         print("***** Warning: Failed to gather data from device (Meat Temperature). Exception: %s" % str(e))

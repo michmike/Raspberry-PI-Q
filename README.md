@@ -151,7 +151,7 @@ You only need to perform the following steps once!
 | File | Description |
 | ------------- | ---- |
 | Raspberry-PI-Q.py | Contains all the logic of the temperature controller. See below for details on its input parameters |
-| index.html | Simple PHP webpage to control the startup and teardown of the Raspberry-PI-Q python program |
+| index.php | Simple PHP webpage to control the startup and teardown of the Raspberry-PI-Q python program |
 | launcher.py | This is the python script executed at reboot of the RPI and it refreshes the code from the github repo as well as call the email address program below |
 | email_IP_address.py | This is a python program that will email and use dweet.io to update the current IP address of the RPI |
 | Freeboard_HTML_MeatChart.txt | This is the sample freeboard.io HTML section for advice on best cooking temperatures. Copy the file contents and create an html-based dashboard on freeboard.io |

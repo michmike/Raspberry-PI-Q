@@ -21,6 +21,7 @@ import requests
 import http.client
 import random
 import urllib.parse
+import statistics
 
 #================ GLOBAL VARIABLES - NEED CONFIG ================#
 global DWEET_NAME
@@ -44,8 +45,9 @@ for i in pinList:
     GPIO.setup(i, GPIO.OUT) 
     GPIO.output(i, GPIO.HIGH)
 
-THERMOCOUPLE_2_ADDRESS = 0x4c #I2C address for Robogaia dual thermocouple
-THERMOCOUPLE_1_ADDRESS = 0x4f #I2C address for Robogaia dual thermocouple
+THERMOCOUPLE_1_ADDRESS  = 0x4f # I2C address for Robogaia dual thermocouple
+THERMOCOUPLE_2_ADDRESS  = 0x4c # I2C address for Robogaia dual thermocouple
+NUM_TEMPERATURE_SAMPLES = 10   # How many temperature samples to take to calculate harmonic mean
 #==================== FIXED GLOBAL VARIABLES ====================#
 
 #=================== OTHER GLOBAL VARIABLES  ====================#
@@ -128,6 +130,7 @@ Subject: %s
 #================================================================#
 
 def log_data(currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTemp, timeLeft):
+    global groveUpdateStartTime
     elapsedTimeForNotification = time.time() - groveUpdateStartTime
     if (elapsedTimeForNotification / 60) > GROVESTREAMS_UPDATE_INTERVAL_MINS:
         log_grovestreams_data(currGrillTemp, currMeatTemp)
@@ -152,10 +155,22 @@ def log_dweety_data(currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTe
 
 def get_current_Grill_temp(): 
     try:
-        data = bus.read_i2c_block_data(THERMOCOUPLE_1_ADDRESS, 1, 2)
-        val = (data[0] << 8) + data[1]
-        return val/5.00*9.00/5.00+32.00
-        #return float(input("Please enter current grill temp: "))
+        counter = 0
+        totalHarmonic = 0
+        arrayOfTemps = [None] * NUM_TEMPERATURE_SAMPLES 
+        while counter < NUM_TEMPERATURE_SAMPLES:
+            data = bus.read_i2c_block_data(THERMOCOUPLE_1_ADDRESS, 1, 2)
+            val = (data[0] << 8) + data[1]
+            arrayOfTemps[counter] = val/5.00*9.00/5.00+32.00            
+            totalHarmonic = totalHarmonic + (1 / arrayOfTemps[counter])
+            counter = counter + 1
+
+        # since thermocouples are unreliable and can have variance in their readings
+        # use the thermocouple to gather 10 samples, or NUM_TEMPERATURE_SAMPLES
+        # use the samples and statistics to get the harmonic mean and the grouped median out of those values
+        # average the harmonic mean and grouped median and return that as the value
+        harmonicMean = NUM_TEMPERATURE_SAMPLES / totalHarmonic        
+        return float("%.2f" % ((statistics.median_grouped(arrayOfTemps) + harmonicMean) / 2))
     except Exception as e:
         smartPrint("***** Warning: Failed to gather data from device (Grill Temperature). Exception: %s" % str(e))
         raise
@@ -164,10 +179,22 @@ def get_current_Grill_temp():
 
 def get_current_Meat_temp(): 
     try:
-        data = bus.read_i2c_block_data(THERMOCOUPLE_2_ADDRESS, 1, 2)
-        val = (data[0] << 8) + data[1]
-        return val/5.00*9.00/5.00+32.00
-        #return float(input("Please enter current meat temp: "))        
+        counter = 0
+        totalHarmonic = 0
+        arrayOfTemps = [None] * NUM_TEMPERATURE_SAMPLES 
+        while counter < NUM_TEMPERATURE_SAMPLES:
+            data = bus.read_i2c_block_data(THERMOCOUPLE_2_ADDRESS, 1, 2)
+            val = (data[0] << 8) + data[1]
+            arrayOfTemps[counter] = val/5.00*9.00/5.00+32.00            
+            totalHarmonic = totalHarmonic + (1 / arrayOfTemps[counter])
+            counter = counter + 1
+
+        # since thermocouples are unreliable and can have variance in their readings
+        # use the thermocouple to gather 10 samples, or NUM_TEMPERATURE_SAMPLES
+        # use the samples and statistics to get the harmonic mean and the grouped median out of those values
+        # average the harmonic mean and grouped median and return that as the value
+        harmonicMean = NUM_TEMPERATURE_SAMPLES / totalHarmonic        
+        return float("%.2f" % ((statistics.median_grouped(arrayOfTemps) + harmonicMean) / 2))
     except Exception as e:
         smartPrint("***** Warning: Failed to gather data from device (Meat Temperature). Exception: %s" % str(e))
         raise
@@ -343,7 +370,7 @@ def main(argv):
         
     except ValueError:
         smartPrint("One of the arguments was invalid")
-        smartPrint("Usage: Raspberry-PI-Q.py [setup temperature to reach with continuous air] [grill temperature] [meat temperature] [alert email] [frequency of notifications in minutes] [loop interval in seconds; recommended 60] [unique name for your device; like Raspberry-PI-Q-Michael] [secret API key for grovestreams] &")
+        smartPrint("Usage: Raspberry-PI-Q.py [setup temperature to reach with continuous air] [grill temperature] [meat temperature] [alert email] [frequency of notifications in minutes] [loop interval in seconds; recommended 60] [unique name for your device; like Raspberry-PI-Q-Michael] [secret API key for grovestreams]")
         sys.exit(1)
     smartPrint("grillSetupTemp=%d, desiredGrillTemp=%d, desiredMeatTemp=%d, alertEmail=%s, alertFrequency=%d, loopInterval=%d, DWEET_NAME=%s, GROVE_API_KEY=%s" % (grillSetupTemp, desiredGrillTemp, desiredMeatTemp, alertEmail, alertFrequency, loopInterval, DWEET_NAME, GROVE_API_KEY))
     

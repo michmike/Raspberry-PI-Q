@@ -130,7 +130,13 @@ You only need to perform the following steps once!
   * `sudo apt-get install apache2 php5 libapache2-mod-php5`
   * `sudo service apache2 restart`
   * `cd /var/www/html`
-  * `sudo cp /home/pi/Raspberry-PI-Q/index.html /var/www/html/.`
+  * `sudo cp /home/pi/Raspberry-PI-Q/index.php /var/www/html/.`
+  * Make sure  that the Apache user (www-data) has access to execute sudo commands
+    * `sudo nano /etc/sudoers`
+    * Add the following line `www-data ALL=(ALL) NOPASSWD: ALL`
+  * After you execute a command on the website, you can check if the python process started using
+    * `ps -u www-data`
+    * `ps aux  | grep python3`
 
 ## Development Instructions
 * Install Python for Windows

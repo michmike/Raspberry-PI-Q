@@ -24,13 +24,12 @@ def get_current_Grill_temp():
         while counter < MAX_SAMPLES:
             data = bus.read_i2c_block_data(THERMOCOUPLE_1_ADDRESS, 1, 2)
             val = (data[0] << 8) + data[1]
-            temperature = val/5.00*9.00/5.00+32.00
-            arrayOfTemps[counter] = float("%.2f" % temperature)
+            arrayOfTemps[counter] = val/5.00*9.00/5.00+32.00            
             totalHarmonic = totalHarmonic + (1/arrayOfTemps[counter])
             counter = counter + 1
 
         harmonicMean = MAX_SAMPLES / totalHarmonic        
-        return ((statistics.median_grouped(arrayOfTemps) + harmonicMean) / 2)
+        return float("%.2f" % ((statistics.median_grouped(arrayOfTemps) + harmonicMean) / 2))
     except Exception as e:
         print("***** Warning: Failed to gather data from device (Grill Temperature). Exception: %s" % str(e))
         raise
@@ -43,13 +42,12 @@ def get_current_Meat_temp():
         while counter < MAX_SAMPLES:
             data = bus.read_i2c_block_data(THERMOCOUPLE_2_ADDRESS, 1, 2)
             val = (data[0] << 8) + data[1]
-            temperature = val/5.00*9.00/5.00+32.00
-            arrayOfTemps[counter] = float("%.2f" % temperature)
+            arrayOfTemps[counter] = val/5.00*9.00/5.00+32.00            
             totalHarmonic = totalHarmonic + (1/arrayOfTemps[counter])
             counter = counter + 1
 
         harmonicMean = MAX_SAMPLES / totalHarmonic        
-        return ((statistics.median_grouped(arrayOfTemps) + harmonicMean) / 2)
+        return float("%.2f" % ((statistics.median_grouped(arrayOfTemps) + harmonicMean) / 2))
     except Exception as e:
         print("***** Warning: Failed to gather data from device (Meat Temperature). Exception: %s" % str(e))
         raise

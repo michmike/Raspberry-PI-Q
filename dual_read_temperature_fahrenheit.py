@@ -34,11 +34,11 @@ def get_current_Meat_temp():
             val = (data[0] << 8) + data[1]
             temperature = val/5.00*9.00/5.00+32.00
             arrayOfTemps[counter] = float("%.2f" % temperature)
-            counter++
+            counter = counter + 1
         counter = 0
         while counter < MAX_SAMPLES:
             print(arrayOfTempsp[counter])
-            counter++
+            counter = counter + 1
         print ("median_grouped " % statistics.median_grouped(arrayOfTemps))
         print ("harmonic_mean " % statistics.harmonic_mean(arrayOfTemps))
         return 

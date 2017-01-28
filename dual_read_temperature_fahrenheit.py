@@ -18,11 +18,19 @@ MAX_SAMPLES = 10
  
 def get_current_Grill_temp(): 
     try:
-        data = bus.read_i2c_block_data(THERMOCOUPLE_1_ADDRESS, 1, 2)
-        val = (data[0] << 8) + data[1]
-        temperature = val/5.00*9.00/5.00+32.00
-        print ("grill temp %s" % temperature)
-        return float("%.2f" % temperature)
+        counter = 0
+        totalHarmonic = 0
+        arrayOfTemps = [None] * MAX_SAMPLES 
+        while counter < MAX_SAMPLES:
+            data = bus.read_i2c_block_data(THERMOCOUPLE_1_ADDRESS, 1, 2)
+            val = (data[0] << 8) + data[1]
+            temperature = val/5.00*9.00/5.00+32.00
+            arrayOfTemps[counter] = float("%.2f" % temperature)
+            totalHarmonic = totalHarmonic + (1/arrayOfTemps[counter])
+            counter = counter + 1
+
+        harmonicMean = MAX_SAMPLES / totalHarmonic        
+        return ((statistics.median_grouped(arrayOfTemps) + harmonicMean) / 2)
     except Exception as e:
         print("***** Warning: Failed to gather data from device (Grill Temperature). Exception: %s" % str(e))
         raise
@@ -30,23 +38,18 @@ def get_current_Grill_temp():
 def get_current_Meat_temp(): 
     try:
         counter = 0
+        totalHarmonic = 0
         arrayOfTemps = [None] * MAX_SAMPLES 
         while counter < MAX_SAMPLES:
             data = bus.read_i2c_block_data(THERMOCOUPLE_2_ADDRESS, 1, 2)
             val = (data[0] << 8) + data[1]
             temperature = val/5.00*9.00/5.00+32.00
             arrayOfTemps[counter] = float("%.2f" % temperature)
+            totalHarmonic = totalHarmonic + (1/arrayOfTemps[counter])
             counter = counter + 1
-        counter = 0
-        harmonicMean = 0
-        while counter < MAX_SAMPLES:
-            print(arrayOfTemps[counter])
-            harmonicMean = harmonicMean + (1/arrayOfTemps[counter])
-            counter = counter + 1
-        realMean = MAX_SAMPLES/harmonicMean
-        print ("median_grouped %s" % statistics.median_grouped(arrayOfTemps))
-        print ("harmonic_mean %s" % realMean)
-        return 10
+
+        harmonicMean = MAX_SAMPLES / totalHarmonic        
+        return ((statistics.median_grouped(arrayOfTemps) + harmonicMean) / 2)
     except Exception as e:
         print("***** Warning: Failed to gather data from device (Meat Temperature). Exception: %s" % str(e))
         raise

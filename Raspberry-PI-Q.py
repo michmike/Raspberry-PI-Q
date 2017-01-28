@@ -289,6 +289,7 @@ def PID_Control_Loop(desiredGrillTemp, desiredMeatTemp, alertEmail, alertFrequen
         
     # This while loop will never end
     notificationStartTime = time.time()
+    tempAlertStartTime = time.time()
     while True:
         startTime = time.time()
         currMeatTemp = float(get_current_Meat_temp())
@@ -316,8 +317,12 @@ def PID_Control_Loop(desiredGrillTemp, desiredMeatTemp, alertEmail, alertFrequen
             # don't provide any air at all as we are close to our optimal temperature
             smartPrint("We are close to our desired temperature for the Grill. Do Nothing!")
         elif difference < -3:
-            smartPrint("***** Warning: We are above the desired temperature for the grill by more than 3 degrees. Rapsberry-PI-Q will try to recover, but PLEASE KEEP THIS IN MIND!")
-            send_email_or_text("We are above the desired temperature for the grill by more than 3 degrees. Rapsberry-PI-Q will try to recover, but PLEASE KEEP THIS IN MIND!", alertEmail, "warning")
+            notificationText = "***** Warning: We are above the desired temperature for the grill by more than 3 degrees. Rapsberry-PI-Q will try to recover, but PLEASE KEEP THIS IN MIND!"
+            smartPrint(notificationText)            
+            elapsedTimeForNotification = time.time() - tempAlertStartTime
+            if (elapsedTimeForNotification / 60) > alertFrequency:
+                send_email_or_text(notificationText, alertEmail, "warning")
+                tempAlertStartTime = time.time() # reset the timer
 
         elif difference > 3:
             if heater_state == "off":
@@ -336,8 +341,13 @@ def PID_Control_Loop(desiredGrillTemp, desiredMeatTemp, alertEmail, alertFrequen
         elapsedTime = time.time() - startTime  # elapsedTime is in seconds and it accounts for the time spend with the fan on
         if elapsedTime > loopInterval:
             # we have a problem here since it is taking longer to run the loop. sleep a token 5 seconds
-            smartPrint("***** Warning: The chosen loop interval of %d seconds is too small. Consider increasing the inverval to over %d seconds" % (loopInterval, elapsedTime))
-            send_email_or_text("The chosen loop interval of %d seconds is too small. Consider increasing the inverval to over %d seconds" % (loopInterval, elapsedTime), alertEmail, "warning")
+            notificationText = "***** Warning: The chosen loop interval of %d seconds is too small. Consider increasing the inverval to over %d seconds" % (loopInterval, elapsedTime)
+            smartPrint(notificationText)
+            elapsedTimeForNotification = time.time() - tempAlertStartTime
+            if (elapsedTimeForNotification / 60) > alertFrequency:
+                send_email_or_text(notificationText, alertEmail, "warning")
+                tempAlertStartTime = time.time() # reset the timer
+
             sleep(5)
         else:
             sleep(loopInterval - elapsedTime)  # sleep the remainder seconds to allow temperature to stabilize after the loop

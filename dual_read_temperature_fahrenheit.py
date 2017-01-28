@@ -12,8 +12,8 @@ import datetime
 import statistics
 
 bus = smbus.SMBus(1)
-THERMOCOUPLE_1_ADDRESS = 0x4f #I2C address for Robogaia dual thermocouple
-THERMOCOUPLE_2_ADDRESS = 0x4c #I2C address for Robogaia dual thermocouple
+THERMOCOUPLE_1_ADDRESS = 0x4f # I2C address for Robogaia dual thermocouple
+THERMOCOUPLE_2_ADDRESS = 0x4c # I2C address for Robogaia dual thermocouple
 MAX_SAMPLES = 10
  
 def get_current_Grill_temp(): 

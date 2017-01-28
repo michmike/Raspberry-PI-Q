@@ -42,7 +42,7 @@ def get_current_Meat_temp():
             counter = counter + 1
         print ("median_grouped " % statistics.median_grouped(arrayOfTemps))
         print ("harmonic_mean " % statistics.harmonic_mean(arrayOfTemps))
-        return 
+        return 10
     except Exception as e:
         print("***** Warning: Failed to gather data from device (Meat Temperature). Exception: %s" % str(e))
         raise

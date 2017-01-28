@@ -15,5 +15,5 @@ sleep(180) # start by sleeping for 3 mins to allow for wifi/internet connectivit
 
 os.chdir("/home/pi/Raspberry-PI-Q")
 os.system("sudo git pull")
-os.system("sudo cp /home/pi/Raspberry-PI-Q/index.html /var/www/html/.")
+os.system("sudo cp /home/pi/Raspberry-PI-Q/index.php /var/www/html/.")
 os.system("sudo python3 email_IP_address.py")

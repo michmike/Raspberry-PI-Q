@@ -48,6 +48,6 @@ def get_current_Meat_temp():
 
 while 1 == 1:
     grillTemp = get_current_Grill_temp()
-    meatTemp = get_celsius_val2()
+    meatTemp = get_current_Meat_temp()
     print("temperature (grill) = %s, temperature (meat) = %s" % (grillTemp, meatTemp))
     time.sleep(1)

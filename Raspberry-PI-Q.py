@@ -52,7 +52,7 @@ NUM_TEMPERATURE_SAMPLES = 10   # How many temperature samples to take to calcula
 
 #=================== OTHER GLOBAL VARIABLES  ====================#
 global groveUpdateStartTime
-config.groveUpdateStartTime = time.time()
+groveUpdateStartTime = time.time()
 GROVESTREAMS_UPDATE_INTERVAL_MINS = 3
 #=================== OTHER GLOBAL VARIABLES  ====================#
 
@@ -131,10 +131,10 @@ Subject: %s
 
 def log_data(currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTemp, timeLeft):    
     global groveUpdateStartTime
-    elapsedTimeForNotification = time.time() - config.groveUpdateStartTime
+    elapsedTimeForNotification = time.time() - groveUpdateStartTime
     if (elapsedTimeForNotification / 60) > GROVESTREAMS_UPDATE_INTERVAL_MINS:
         log_grovestreams_data(currGrillTemp, currMeatTemp)        
-        config.groveUpdateStartTime = time.time() # reset the timer
+        groveUpdateStartTime = time.time() # reset the timer
 
     log_dweety_data(currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTemp, timeLeft)
 

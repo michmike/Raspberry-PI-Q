@@ -39,7 +39,7 @@
 			<tr><td>Device Unique Name</td><td>This is the unique name for your device that you want to use for tracking analytics on Dweet, Freeboard, and Grovestreams</td>
 				<td><input name="uniqueName" value="<?php if(isset($_GET['uniqueName'])){echo $_GET['uniqueName'];} else {echo 'Raspberry-PI-Q-[name]';} ?>"></td></tr>
 			<tr><td>Grill Setup Temperature</td><td>This is the unique application API ID you get from your grovestreams account</td>
-			<td><input name="GROVE_API_KEY" value="<?php if(isset($_GET['GROVE_API_KEYRun'])){echo $_GET['GROVE_API_KEY'];} else {echo '[grove API guid]';} ?>"></td></tr>
+			<td><input name="GROVE_API_KEY" value="<?php if(isset($_GET['GROVE_API_KEY'])){echo $_GET['GROVE_API_KEY'];} else {echo '[grove API guid]';} ?>"></td></tr>
 		</table>
 		<input type="submit" name="Run" value="Run"/>
 		&nbsp;

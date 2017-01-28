@@ -134,6 +134,7 @@ You only need to perform the following steps once!
   * Make sure  that the Apache user (www-data) has access to execute sudo commands
     * `sudo nano /etc/sudoers`
     * Add the following line `www-data ALL=(ALL) NOPASSWD: ALL`
+  * Visit your site at `http://<RPI IP Address>/index.php`
   * After you execute a command on the website, you can check if the python process started using
     * `ps -u www-data`
     * `ps aux  | grep python3`
@@ -158,7 +159,7 @@ You only need to perform the following steps once!
 | ------------- | ---- |
 | Raspberry-PI-Q.py | Contains all the logic of the temperature controller. See below for details on its input parameters |
 | index.php | Simple PHP webpage to control the startup and teardown of the Raspberry-PI-Q python program |
-| launcher.py | This is the python script executed at reboot of the RPI and it refreshes the code from the github repo as well as call the email address program below |
+| launcher.py | This is the python script executed at reboot of the RPI and it refreshes the code from the github repo as well as call the email address program below. It also copies the updated PHP website to the right location |
 | email_IP_address.py | This is a python program that will email and use dweet.io to update the current IP address of the RPI |
 | Freeboard_HTML_MeatChart.txt | This is the sample freeboard.io HTML section for advice on best cooking temperatures. Copy the file contents and create an html-based dashboard on freeboard.io |
 | Freeboard_HTML_Dashboard.txt | This is the sample freeboard.io HTML section for the custom temperature dashboard. Copy the file contents and create an html-based dashboard on freeboard.io | 

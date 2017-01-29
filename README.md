@@ -211,7 +211,7 @@ Some things I want to explore for a v2 of this project include
 ## Pictures
 ### Click on them to see them bigger in size
 1. Relay and Power Wiring
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_001929.jpg" width="300" height="300">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_001929.jpg" width="375" height="500">
 2. Fan
 ![Fan](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002004.jpg)
 3.Wiring of Ground, VCC, and Relay IN2 

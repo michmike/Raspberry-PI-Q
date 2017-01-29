@@ -42,8 +42,10 @@
 			<td><input name="GROVE_API_KEY" value="<?php if(isset($_GET['GROVE_API_KEY'])){echo $_GET['GROVE_API_KEY'];} else {echo '[grove API guid]';} ?>"></td></tr>
 		</table>
 		<input type="submit" name="Run" value="Run"/>
-		&nbsp;
+		&nbsp; &nbsp;
 		<input type="submit" name="Kill" value="Kill"/>
+		&nbsp; &nbsp;
+		<input type="submit" name="Shutdown" value="Shutdown"/>
 	</form>
 	<?php
 		if(isset($_GET['Run']))
@@ -64,6 +66,11 @@
 		{
 			echo exec("sudo pkill python3");
 		}
+		else if (isset($_GET['Shutdown']))
+		{
+			echo exec("sudo shutdown -h now");
+		}
+
 	?>
 
 	<h2>Analytics</h2>

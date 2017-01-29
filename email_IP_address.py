@@ -73,7 +73,9 @@ def main(argv):
     try:        
         ipAddress = socket.gethostbyname(socket.gethostname())
         ipAddress2 = [(s.connect(('8.8.8.8', 53)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1]
-        textToSend = "Raspberry PI just rebooted at %s. My IP address is %s or %s" % (datetime.datetime.now().time(), ipAddress, ipAddress2)
+        now = datetime.datetime.now()
+        currentTimestamp = now.strftime("%Y-%m-%d %H:%M GMT") 
+        textToSend = "Raspberry PI just rebooted at %s. My IP address is %s or %s" % (currentTimestamp, ipAddress, ipAddress2)
         smartPrint(textToSend)
         log_dweety_data(textToSend)
         send_email_or_text(textToSend,

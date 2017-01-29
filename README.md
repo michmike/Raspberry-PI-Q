@@ -209,8 +209,10 @@ Some things I want to explore for a v2 of this project include
 * Adopt the Facebook Messenger Bot architecture to create a bot for my Raspberry-PI-Q
 
 ## Pictures
+### Click on them to see them bigger in size
+<img src="url" alt="alt text" width="whatever" height="whatever">
 1. Relay and Power Wiring
-![Relay and Power Wiring](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_001929.jpg)
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_001929.jpg" width="300" height="300">
 2. Fan
 ![Fan](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002004.jpg)
 3.Wiring of Ground, VCC, and Relay IN2 

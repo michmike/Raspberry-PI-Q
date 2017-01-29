@@ -8,6 +8,7 @@
 
 import RPi.GPIO as GPIO
 import time
+import sys
 
 GPIO.setmode(GPIO.BCM)
 
@@ -22,6 +23,12 @@ for i in pinList:
 # time to sleep in seconds between operations in the main loop
 SleepTimeL = 20
 
+# If a parameter is passed to end this script after a certain time, go ahead and execute on it
+# Time is passed in seconds
+if len(sys.argv) > 1:
+    startTime = time.time()
+    endTime = float(sys.argv[1])
+
 try:
     while 1 == 1:
         for i in pinList: 
@@ -31,11 +38,12 @@ try:
             print("turning off")
             GPIO.output(i, GPIO.HIGH)
             time.sleep(SleepTimeL); 
-    
-    GPIO.cleanup()
-    print("finished cleanup")
-
-# End program cleanly with keyboard
+        if len(sys.argv) > 1:
+            elapsedTimeForNotification = time.time() - startTime
+            if elapsedTimeForNotification > endTime:
+                break
 except KeyboardInterrupt:
-    print("quit")
+    print("Exiting after a keyboard cancellation...Goodbye...")
+finally:    
     GPIO.cleanup()
+    print("Finished cleanup of GPIO")

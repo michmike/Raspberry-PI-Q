@@ -1,5 +1,69 @@
 <html>
 <head>
+	<?php
+		if (isset($_GET['Run']))
+		{
+			$grillSetupTemp = $_GET['grillSetupTemp'];
+			$desiredGrillTemp = $_GET['desiredGrillTemp'];
+			$desiredMeatTemp = $_GET['desiredMeatTemp'];
+			$alertEmail = $_GET['alertEmail'];
+			$alertFrequency = $_GET['alertFrequency'];
+			$loopInterval = $_GET['loopInterval'];
+			$uniqueName = $_GET['uniqueName'];
+			$GROVE_API_KEY = $_GET['GROVE_API_KEY'];
+
+			$command = "sudo python3 /home/pi/Raspberry-PI-Q/Raspberry-PI-Q.py " . $grillSetupTemp . " " . $desiredGrillTemp . " " . $desiredMeatTemp . " " . $alertEmail . " " . $alertFrequency . " " . $loopInterval . " " . $uniqueName . " " . $GROVE_API_KEY . " > /dev/null 2>&1 & echo $!";
+			$pid = shell_exec($command);
+			echo "The process ID is: " . $pid;
+		}
+		else if (isset($_GET['Kill']))
+		{
+			echo shell_exec("sudo pkill python3");
+		}
+		else if (isset($_GET['Shutdown']))
+		{
+			echo shell_exec("sudo shutdown -h now");
+		}
+		else if (isset($_GET['TestThermocouple']))
+		{
+			echo shell_exec("sudo python3 /home/pi/Raspberry-PI-Q/dual_read_temperature_fahrenheit.py");
+		}
+		else if (isset($_GET['TestRelay']))
+		{
+			echo shell_exec("sudo python3 /home/pi/Raspberry-PI-Q/relay_tester.py");
+		}
+		else if (isset($_GET['test']))
+		{
+			$descriptorspec = array(
+				0 => array("pipe", "r"),  // stdin
+				1 => array("pipe", "w"),  // stdout
+				2 => array("pipe", "w"),  // stderr
+			);
+			$process = proc_open('sudo pwd', $descriptorspec, $pipes, null, null);
+			//echo $process;
+			$stdout = stream_get_contents($pipes[1]);
+			fclose($pipes[1]);
+
+			$stderr = stream_get_contents($pipes[2]);
+			fclose($pipes[2]);
+
+			echo "stdout : \n";
+			var_dump($stdout);
+
+			echo "stderr :\n";
+			var_dump($stderr);
+			echo exec("sudo pwd");
+		}
+	?>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		var auto_refresh = setInterval(
+			function ()
+			{
+				$('#load_updates').load('processID.php?PID=<?php echo $pid ?>').fadeIn("slow");
+			}, 10000); // refresh every 10000 milliseconds
+	</script>
+
 	<title>Raspberry-PI-Q by michmike</title>
 	<style>
 		table {
@@ -16,13 +80,48 @@
 		padding:.3em 1em;
 		text-align:left;
 		}
+		.button {
+		border-top: 1px solid #96d1f8;
+		background: #65a9d7;
+		background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
+		background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
+		background: -moz-linear-gradient(top, #3e779d, #65a9d7);
+		background: -ms-linear-gradient(top, #3e779d, #65a9d7);
+		background: -o-linear-gradient(top, #3e779d, #65a9d7);
+		padding: 5px 10px;
+		-webkit-border-radius: 8px;
+		-moz-border-radius: 8px;
+		border-radius: 8px;
+		-webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+		-moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+		box-shadow: rgba(0,0,0,1) 0 1px 0;
+		text-shadow: rgba(0,0,0,.4) 0 1px 0;
+		color: white;
+		font-size: 14px;
+		font-family: Georgia, serif;
+		text-decoration: none;
+		vertical-align: middle;
+		}
+		.button:hover {
+		border-top-color: #28597a;
+		background: #28597a;
+		color: #ccc;
+		}
+		.button:active {
+		border-top-color: #1b435e;
+		background: #1b435e;
+		}
 	</style>
 </head>
-<body>
+<body>	
 	<h1>Raspberry-PI-Q by michmike</h1>
 	<h2>Input Parameters</h2>
 	<h3>Example invocation: sudo python3 /home/pi/Raspberry-PI-Q/Raspberry-PI-Q.py 180 225 125 email@address.com 5 30 Raspberry-PI-Q-Michael ff83612c-6814-466e-bd51-5d55039c184e &</h3>	
+	
+	<div id="load_updates"></div>
+	<div id="load_updates2"><?php echo $pid ?></div>
 	<form method="get" action="index.php">
+		<input type="hidden" name="PID" value="<?php echo $pid ?>"/>
 		<table>
 			<tr><td>Grill Setup Temperature (in Fahrenheit)</td><td>For example 180 is the setup temperature of the grill. The fan will run continuously until this temperature is reached</td>
 				<td><input name="grillSetupTemp" value="<?php if(isset($_GET['grillSetupTemp'])){echo $_GET['grillSetupTemp'];} else {echo '180';} ?>"></td></tr>
@@ -46,55 +145,12 @@
 		<input type="submit" name="Kill" value="Kill"/>
 		&nbsp; &nbsp;
 		<input type="submit" name="Shutdown" value="Shutdown"/>
+		&nbsp; &nbsp;
+		<input type="submit" name="TestRelay" value="TestRelay"/>
+		&nbsp; &nbsp;
+		<input type="submit" name="TestThermocouple" value="TestThermocouple"/>
 		<input type="submit" name="test" value="test"/>
 	</form>
-	<?php
-		if(isset($_GET['Run']))
-		{
-			$grillSetupTemp = $_GET['grillSetupTemp'];
-			$desiredGrillTemp = $_GET['desiredGrillTemp'];
-			$desiredMeatTemp = $_GET['desiredMeatTemp'];
-			$alertEmail = $_GET['alertEmail'];
-			$alertFrequency = $_GET['alertFrequency'];
-			$loopInterval = $_GET['loopInterval'];
-			$uniqueName = $_GET['uniqueName'];
-			$GROVE_API_KEY = $_GET['GROVE_API_KEY'];
-
-			$command = "sudo python3 /home/pi/Raspberry-PI-Q/Raspberry-PI-Q.py " . $grillSetupTemp . " " . $desiredGrillTemp . " " . $desiredMeatTemp . " " . $alertEmail . " " . $alertFrequency . " " . $loopInterval . " " . $uniqueName . " " . $GROVE_API_KEY . " &";
-			exec($command);
-		}
-		else if (isset($_GET['Kill']))
-		{
-			echo exec("sudo pkill python3");
-		}
-		else if (isset($_GET['Shutdown']))
-		{
-			echo exec("sudo shutdown -h now");
-		}
-		else if (isset($_GET['test']))
-		{
-			$descriptorspec = array(
-				0 => array("pipe", "r"),  // stdin
-				1 => array("pipe", "w"),  // stdout
-				2 => array("pipe", "w"),  // stderr
-			);
-			$process = proc_open('sudo pwd', $descriptorspec, $pipes, dirname(__FILE__), null);
-			echo $process
-			$stdout = stream_get_contents($pipes[1]);
-			fclose($pipes[1]);
-
-			$stderr = stream_get_contents($pipes[2]);
-			fclose($pipes[2]);
-
-			echo "stdout : \n";
-			var_dump($stdout);
-
-			echo "stderr :\n";
-			var_dump($stderr);
-			echo exec("sudo pwd");
-		}
-
-	?>
 
 	<h2>Analytics</h2>
 	<li><a target="new" href="https://dweet.io/follow/Raspberry-PI-Q-IPAddress">Get your IP Address - https://dweet.io/follow/Raspberry-PI-Q-IPAddress</a>

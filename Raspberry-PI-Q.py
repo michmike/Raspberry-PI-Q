@@ -94,6 +94,7 @@ def log_grovestreams_data(currGrillTemp, currMeatTemp):
 def smartPrint(value):
     print(value)
     LOGFILE.write(str(value) + os.linesep)
+    os.fsync(LOGFILE)
 
 #================================================================#
 
@@ -405,6 +406,7 @@ def main(argv):
         main(sys.argv[1:])
     finally:
         GPIO.cleanup()
+        os.close(LOGFILE)
 
 #================================================================#
 

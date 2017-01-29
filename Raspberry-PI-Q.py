@@ -141,8 +141,10 @@ def log_data(currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTemp, tim
 #================================================================#
 
 def log_dweety_data(currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTemp, timeLeft):
-    try:        
-        dweepy.dweet_for(DWEET_NAME, {'currGrillTemp':currGrillTemp, 'desiredGrillTemp':desiredGrillTemp, 'currMeatTemp':currMeatTemp, 'desiredMeatTemp':desiredMeatTemp, 'timeLeft':"{0:.2f}".format(timeLeft)})        
+    try:      
+        now = datetime.datetime.now()
+        currentTimestamp = now.strftime("%Y-%m-%d %H:%M")  
+        dweepy.dweet_for(DWEET_NAME, {'currGrillTemp':currGrillTemp, 'desiredGrillTemp':desiredGrillTemp, 'currMeatTemp':currMeatTemp, 'desiredMeatTemp':desiredMeatTemp, 'timeLeft':"{0:.2f}".format(timeLeft), 'currentTimestamp':currentTimestamp})
 
     # check for HTTP issues and report
     except requests.HTTPError as httperror:        

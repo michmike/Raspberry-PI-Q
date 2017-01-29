@@ -27,7 +27,7 @@ import statistics
 global DWEET_NAME
 DWEET_NAME = '<entered through arguments>' # this is the "thing" in dweet.io language
 GROWTH_RATE_RANGE = 10 # how many samples we need to have before starting to calculate the statistics for when the meat is ready
-LOGFILE = open('log.txt', 'w')
+LOGFILE = open('/tmp/Raspberry-PI-Q_log.txt', 'w')
 FROM_EMAIL_ADDRESS = 'raspberrypiq@gmx.com'
 FROM_EMAIL_ADDRESS_PWD = 'Raspberry-pi-q17!'
 global GROVE_API_KEY

@@ -17,7 +17,7 @@ import socket
 import dweepy
 
 #================ GLOBAL VARIABLES - NEED CONFIG ================#
-LOGFILE = open('startuplog.txt', 'w')
+LOGFILE = open('/tmp/Raspberry-PI-Q_startuplog.txt', 'w')
 FROM_EMAIL_ADDRESS = 'raspberrypiq@gmx.com'
 FROM_EMAIL_ADDRESS_PWD = 'Raspberry-pi-q17!'
 TO_EMAIL_ADDRESS = 'raspberrypiq@gmx.com'

@@ -75,6 +75,8 @@ You only need to perform the following steps once!
     * `iface eth0 inet dhcp`
     * `[4spaces]dns-search google.com`
     * `[4spaces]dns-nameservers 192.168.1.254`
+  * Might need to do the same config for wlan0, the wifi interface
+    * `iface wlan0 inet dhcp`
   * `sudo /etc/init.d/networking restart`
   * `cat /etc/resolv.conf` [verify nameserver is set]
   * `sudo route -n` [verify routes are set]

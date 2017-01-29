@@ -108,6 +108,8 @@ def send_email_or_text(message, alertEmail, severity):
     try:
         TO = alertEmail
         subject = 'Raspberry-PI-Q %s' % severity
+        now = datetime.datetime.now()
+        currentTimestamp = now.strftime("%Y-%m-%d %H:%M GMT")
             
         formatedMessage = """From: Raspberry-PI-Q <%s>
 To: %s
@@ -115,7 +117,7 @@ Subject: %s
 
 %s
 \nTime Sent: %s
-""" % (FROM_EMAIL_ADDRESS, alertEmail, subject, message, datetime.datetime.now().time())
+""" % (FROM_EMAIL_ADDRESS, alertEmail, subject, message, currentTimestamp)
     
         server = smtplib.SMTP('mail.gmx.com:587')
         server.starttls()
@@ -143,7 +145,7 @@ def log_data(currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTemp, tim
 def log_dweety_data(currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTemp, timeLeft):
     try:      
         now = datetime.datetime.now()
-        currentTimestamp = now.strftime("%Y-%m-%d %H:%M")  
+        currentTimestamp = now.strftime("%Y-%m-%d %H:%M GMT")  
         dweepy.dweet_for(DWEET_NAME, {'currGrillTemp':currGrillTemp, 'desiredGrillTemp':desiredGrillTemp, 'currMeatTemp':currMeatTemp, 'desiredMeatTemp':desiredMeatTemp, 'timeLeft':"{0:.2f}".format(timeLeft), 'currentTimestamp':currentTimestamp})
 
     # check for HTTP issues and report

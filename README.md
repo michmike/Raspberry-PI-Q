@@ -210,7 +210,6 @@ Some things I want to explore for a v2 of this project include
 
 ## Pictures
 ### Click on them to see them bigger in size
-<img src="url" alt="alt text" width="whatever" height="whatever">
 1. Relay and Power Wiring
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_001929.jpg" width="300" height="300">
 2. Fan

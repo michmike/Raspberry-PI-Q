@@ -46,6 +46,7 @@
 		<input type="submit" name="Kill" value="Kill"/>
 		&nbsp; &nbsp;
 		<input type="submit" name="Shutdown" value="Shutdown"/>
+		<input type="submit" name="test" value="test"/>
 	</form>
 	<?php
 		if(isset($_GET['Run']))
@@ -69,6 +70,28 @@
 		else if (isset($_GET['Shutdown']))
 		{
 			echo exec("sudo shutdown -h now");
+		}
+		else if (isset($_GET['test']))
+		{
+			$descriptorspec = array(
+				0 => array("pipe", "r"),  // stdin
+				1 => array("pipe", "w"),  // stdout
+				2 => array("pipe", "w"),  // stderr
+			);
+			$process = proc_open('sudo pwd', $descriptorspec, $pipes, dirname(__FILE__), null);
+			echo $process
+			$stdout = stream_get_contents($pipes[1]);
+			fclose($pipes[1]);
+
+			$stderr = stream_get_contents($pipes[2]);
+			fclose($pipes[2]);
+
+			echo "stdout : \n";
+			var_dump($stdout);
+
+			echo "stderr :\n";
+			var_dump($stderr);
+			echo exec("sudo pwd");
 		}
 
 	?>

@@ -160,7 +160,8 @@ You only need to perform the following steps once!
 | File | Description |
 | ------------- | ---- |
 | Raspberry-PI-Q.py | Contains all the logic of the temperature controller. See below for details on its input parameters |
-| index.php | Simple PHP webpage to control the startup and teardown of the Raspberry-PI-Q python program |
+| index.php | PHP webpage to control the startup and teardown of the Raspberry-PI-Q python program. It also includes test utilities and real time logging output from the RPI |
+| processID.php | Simple PHP webpage to check if the process ID from the URL is still running on the RPI |
 | launcher.py | This is the python script executed at reboot of the RPI and it refreshes the code from the github repo as well as call the email address program below. It also copies the updated PHP website to the right location |
 | email_IP_address.py | This is a python program that will email and use dweet.io to update the current IP address of the RPI |
 | Freeboard_HTML_MeatChart.txt | This is the sample freeboard.io HTML section for advice on best cooking temperatures. Copy the file contents and create an html-based dashboard on freeboard.io |
@@ -210,32 +211,49 @@ Some things I want to explore for a v2 of this project include
 
 ## Pictures
 ### Click on them to see them bigger in size
-1. Relay and Power Wiring
+1. Relay and Power Wiring for Ground, VCC, and Relay IN2 
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_001929.jpg" width="375" height="500">
-2. Fan
-![Fan](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002004.jpg)
-3.Wiring of Ground, VCC, and Relay IN2 
-![Wiring of Ground, VCC, and Relay IN2](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002454.jpg)
-4. Robogaia board pass-through connection to 5v power and ground
-![Robogaia board pass-through connection to 5v power and ground](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002514.jpg)
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/relay.jpg" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/relaysetup.jpg" width="800" height="600">
+2. Fan and fan adaptor for kamado style grill's bottom air vent
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002004.jpg" width="375" height="500">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/kamadoconnector.jpg" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/fanassembly.jpg" width="800" height="600">
+3.
+4. Robogaia board pass-through connection to 5v power, ground, and GPIO 26
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002514.jpg" width="375" height="500">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/wiringonthermocouple_1.jpg" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/wiringonthermocouple_2.jpg" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_9539.jpg" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_9538.jpg" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002602.jpg" width="800" height="600">
 5. Thermocouples on the robogaia dual board
-![Thermocouples on the robogaia dual board](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002521.jpg)
-6. GPIO 26 connection to the relay IN2
-![GPIO 26 connection to the relay IN2](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002602.jpg)
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002521.jpg" width="375" height="500">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/thermocoupleplate.jpg" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/thermocouplesetup.jpg" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_9540.jpg" width="800" height="600">
+6. 
 7. PIN layout for Raspberry
-![PIN layout for Raspberry](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/RaspberryPI2_PIN_layout.jpg)
-8. PIN layout for Raspberry
-![PIN layout for Raspberry](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/RaspberryPI3_PIN_layout.jpg)
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/RaspberryPI2_PIN_layout.jpg" width="375" height="500">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/RaspberryPI3_PIN_layout.jpg" width="800" height="600">
+8. Example Text/Email Notification
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/emailnotification.png" width="800" height="600">
 9. Example email alert coming from Grovestreams
-![Example email alert coming from Grovestreams](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/email-alert.png)
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/email-alert.jpg" width="800" height="600">
 10. Fan adaptor to fit kamado style grills
 ![Fan adaptor to fit kamado style grills](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/fan-adaptor-for-big-green-egg.jpg)
 11. Inactivity outside-in monitoring alert by Grovestreams
-![Inactivity outside-in monitoring alert by Grovestreams](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/outside-in-monitoring.png)
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/outside-in-monitoring.jpg" width="800" height="600">
 12. Parts 
-![Parts](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/parts.jpg)
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/parts.jpg" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/thermocouples.jpg" width="800" height="600">
 13. Top air vent for kamado grills
 14. Input air vent for kamado grills
-15. My *custom* case for the RPI and all its components
-16. Grovestreams dashboard
-17. Freeboard dashboard
+15. Fire box - light up just a single charcoal and get the Raspberry-PI-Q started
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/firebox.jpg" width="800" height="600">
+16. My *custom* case for the RPI and all its components
+17. Grovestreams dashboard
+18. Freeboard.IO dashboard
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/FreeboardDashboard.png" width="600" height="800">
+19. Raspberry-PI-Q website 
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/phpWebsite.png" width="800" height="600">

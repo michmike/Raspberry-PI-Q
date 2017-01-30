@@ -1,7 +1,6 @@
 <html>
 <head>
-	<?php
-		$shellexecOutput = "No content exists yet!"
+	<?php		
 		if (isset($_GET['Run']))
 		{
 			$grillSetupTemp = $_GET['grillSetupTemp'];
@@ -40,7 +39,7 @@
 		// Only execute the self-updating jQuery if the PID is already set
 		if (strlen($pid) > 0)
 		{
-	?>
+	?>		
 		var auto_refresh = setInterval(
 			function ()
 			{
@@ -52,6 +51,10 @@
 				});
 			}, 10000); // refresh every 10 seconds. Number is in milliseconds
 	<?php
+		}
+		else if (strlen($shellexecOutput) < 1)
+		{
+			$shellexecOutput = "No content exists yet!";
 		}
 	?>
 	</script>

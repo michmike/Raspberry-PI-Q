@@ -213,25 +213,25 @@ Some things I want to explore for a v2 of this project include
 ### Click on them to see them bigger in size
 1. Relay and Power Wiring for Ground, VCC, and Relay IN2 
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_001929.jpg" width="375" height="500">
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/relay.jpg" width="800" height="600">
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/relaysetup.jpg" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/relay.JPG" width="800" height="600">          
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/relaysetup.JPG" width="800" height="600">
 2. Fan and fan adaptor for kamado style grill's bottom air vent
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002004.jpg" width="375" height="500">
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/kamadoconnector.jpg" width="800" height="600">
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/fanassembly.jpg" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/kamadoconnector.JPG" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/fanassembly.JPG" width="800" height="600">
 3.
 4. Robogaia board pass-through connection to 5v power, ground, and GPIO 26
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002514.jpg" width="375" height="500">
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/wiringonthermocouple_1.jpg" width="800" height="600">
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/wiringonthermocouple_2.jpg" width="800" height="600">
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_9539.jpg" width="800" height="600">
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_9538.jpg" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/wiringonthermocouple_1.JPG" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/wiringonthermocouple_2.JPG" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_9539.JPG" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_9538.JPG" width="800" height="600">
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002602.jpg" width="800" height="600">
 5. Thermocouples on the robogaia dual board
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002521.jpg" width="375" height="500">
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/thermocoupleplate.jpg" width="800" height="600">
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/thermocouplesetup.jpg" width="800" height="600">
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_9540.jpg" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/thermocoupleplate.JPG" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/thermocouplesetup.JPG" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_9540.JPG" width="800" height="600">
 6. 
 7. PIN layout for Raspberry
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/RaspberryPI2_PIN_layout.jpg" width="375" height="500">
@@ -250,7 +250,7 @@ Some things I want to explore for a v2 of this project include
 13. Top air vent for kamado grills
 14. Input air vent for kamado grills
 15. Fire box - light up just a single charcoal and get the Raspberry-PI-Q started
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/firebox.jpg" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/firebox.JPG" width="800" height="600">
 16. My *custom* case for the RPI and all its components
 17. Grovestreams dashboard
 18. Freeboard.IO dashboard

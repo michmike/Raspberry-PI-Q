@@ -35,16 +35,16 @@
 	?>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
 	<script type="text/javascript">
-	<?php
-		// Only execute the self-updating jQuery if the PID is already set
-		if (strlen($pid) > 0)
-		{
-	?>
 		function ClearLogs()
 		{
 			$('#interactiveData').load("Log content has been erased!");
 		}
 
+	<?php
+		// Only execute the self-updating jQuery if the PID is already set
+		if (strlen($pid) > 0)
+		{
+	?>
 	    var lastUpdate = new Date("2017-01-01");
 		var auto_refresh = setInterval(
 			function ()

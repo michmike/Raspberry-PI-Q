@@ -92,9 +92,14 @@ def log_grovestreams_data(currGrillTemp, currMeatTemp):
 #================================================================#
 
 def smartPrint(value):
+    # print the data to the stdout, to a file, and also to DWEET.IO
     print(value)
-    LOGFILE.write(str(value) + os.linesep)
-    os.fsync(LOGFILE)
+    try:
+        LOGFILE.write(str(value) + os.linesep)
+        os.fsync(LOGFILE)                
+        dweepy.dweet_for("%s%s" % (DWEET_NAME, "_log"), {'log':value})                
+    catch Exception as e:
+        print("***** Warning: Failed to log data to the file stream or to Dweet.IO. Failure Reason: %s" % str(e))
 
 #================================================================#
 
@@ -128,7 +133,7 @@ Subject: %s
     
     # check for issues and report
     except Exception as e:
-        smartPrint("***** Warning: Failed to send email or text notification. Exception %s" % str(e)) 
+        smartPrint("***** Warning: Failed to send email or text notification. Exception %s" % str(e))         
 
 #================================================================#
 

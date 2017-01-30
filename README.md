@@ -244,7 +244,7 @@ Some things I want to explore for a v2 of this project include
 9. Parts  
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/parts.jpg">
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/thermocouple.JPG" width="800" height="600">
-10. Top air vent for kamado grills (top vent - air and smoke goes out from here)  
+10. Top air vent for kamado grills (top vent - air and smoke goes out from here). Adjust this depending on temperature and air flow you require  
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/topvent.jpg" width="800" height="600">
 11. Input air vent for kamado grills (bottom vent - air comes in through here)  
 Coming soon...

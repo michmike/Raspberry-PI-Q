@@ -217,7 +217,7 @@ Some things I want to explore for a v2 of this project include
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_001929.jpg" width="375" height="500">
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/relay.JPG" width="800" height="600">          
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/relaysetup.JPG" width="800" height="600">
-2. Fan and fan adaptor for kamado style grill's bottom air vent  
+2. Fan and fan adaptor for kamado style grill's bottom air vent. Use aluminum high-heat tape where necessary  
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002004.jpg" width="375" height="500">
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/kamadoconnector.JPG" width="800" height="600">
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/fanassembly.JPG" width="800" height="600">
@@ -257,4 +257,4 @@ Some things I want to explore for a v2 of this project include
 15. Freeboard.IO dashboard  
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/FreeboardDashboard.png">
 16. Raspberry-PI-Q website 
-<img src="https://github.com /michmike/Raspberry-PI-Q/blob/master/Images/phpWebsite.png">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/phpWebsite.png">

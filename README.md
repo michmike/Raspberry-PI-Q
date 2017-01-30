@@ -203,7 +203,7 @@ You only need to perform the following steps once!
 * Adjust the voltage to the fan according to weather conditions and size of grill. 4-6 volts should work great
 * Visit https://dweet.io/follow/Raspberry-PI-Q-Michael [Change the URL to match your 7th parameter] for the raw data
 * Visit freeboard.io/board/[your board id that you created earlier] for the dashboard
-* Visit https://www.grovestreams.com/observationStudio.html for the charts and alerts  
+* Visit https://www.grovestreams.com, click on your organization, and go to Dashboards to view/create charts and alerts  
 * Shutdown the RPI before removing the power cord using `sudo shutdown -h now`
 
 ## Future Ideas

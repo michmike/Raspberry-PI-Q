@@ -245,9 +245,9 @@ Some things I want to explore for a v2 of this project include
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/parts.jpg">
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/thermocouple.JPG" width="800" height="600">
 10. Top air vent for kamado grills (top vent - air and smoke goes out from here)  
-Coming soon...
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/topvent.jpg" width="800" height="600">
 11. Input air vent for kamado grills (bottom vent - air comes in through here)  
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/bottomvent.jpg" width="800" height="600">
+Coming soon...
 12. Fire box - light up just a single charcoal and get the Raspberry-PI-Q started  
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/firebox.JPG" width="800" height="600">
 13. My *custom* case for the RPI and all its components (top and side view)  

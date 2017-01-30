@@ -39,9 +39,9 @@ If you are looking for non-DIY alternatives, the products from [BBQ Guru](http:/
   * Useful video: https://www.youtube.com/watch?v=OQyntQLazMU
   * There are two rows of input pins (GND IN1 IN2 IN3 IN4 VCC) on the relay board and (JD-VCC VCC) with the latter coming with a jumper bridging the pins
     * Keep the jumper for (JD-VCC VCC) on
-    * Connect a wire from GND on your device (pin #6) to GND on the relay module
-    * Connect a wire from the 5V pin on your device (pin #2) to the VCC pin that is adjacent to IN4 (not the one next to JD-VCC!)
-    * Finally hook the GPIO 26 (pin #37) up to IN2 
+    * [Blue Wire] Connect a wire from GND on your RPI (pin #6) to GND on the relay module
+    * [Red Wire] Connect a wire from the 5V pin on your RPI (pin #2) to the VCC pin that is adjacent to IN4 (not the one next to JD-VCC!) on the relay
+    * [Yellow Wire] Finally hook the GPIO 26 (pin #37) of the RPI to IN2 of the relay
     * Set the pin to 'low' or 0V in the software to activate and 'high' or 3.3V-5V to deactivate
   * Run `sudo python3 relay_tester.py` from the source code below to test the relay on/off operations
 * Splice the power source for the 12v DC power source for the fan and have it go through the relay IN2 so that the relay can control the on/off power supply for the fan
@@ -185,7 +185,7 @@ You only need to perform the following steps once!
   * Password: [whatever you set in the instructions to update the password above]
 * Once you login you will get access to the RPI's operating system
 * `cd /home/pi/Raspberry-PI-Q/`
-* Run the command to start the Raspberry-PI-Q. Alternatively you can visit `http://192.168.1.14/index.php` to do it from the graphical interface
+* Run the command to start the Raspberry-PI-Q. Alternatively you can visit `http://192.168.1.14/index.php` to operate the Raspberry-PI-Q from the graphical interface. Replace the IP Address with your own from the step above
   * `sudo python3 Raspberry-PI-Q.py 180 225 125 email@address.com 5 30 Raspberry-PI-Q-Michael ff83612c-6814-466e-bd51-5d55039c184e &`
   * _All temperatures are in fahrenheit_
   * 1st parameter: 180 is the setup temperature of the grill. The fan will run continuously until this temperature is reached
@@ -242,7 +242,7 @@ Some things I want to explore for a v2 of this project include
 8. Inactivity outside-in monitoring alert by Grovestreams  
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/outside-in-monitoring.png">
 9. Parts  
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/parts.jpg" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/parts.jpg">
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/thermocouples.JPG" width="800" height="600">
 10. Top air vent for kamado grills (top vent - air and smoke goes out from here)  
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/topvent.jpg" width="800" height="600">

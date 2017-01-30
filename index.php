@@ -26,42 +26,25 @@
 		}
 		else if (isset($_GET['TestThermocouple']))
 		{
-			echo shell_exec("sudo python3 /home/pi/Raspberry-PI-Q/dual_read_temperature_fahrenheit.py");
+			$shellexecOutput = shell_exec("sudo python3 /home/pi/Raspberry-PI-Q/dual_read_temperature_fahrenheit.py 30");
 		}
 		else if (isset($_GET['TestRelay']))
 		{
-			echo shell_exec("sudo python3 /home/pi/Raspberry-PI-Q/relay_tester.py");
-		}
-		else if (isset($_GET['test']))
-		{
-			$descriptorspec = array(
-				0 => array("pipe", "r"),  // stdin
-				1 => array("pipe", "w"),  // stdout
-				2 => array("pipe", "w"),  // stderr
-			);
-			$process = proc_open('sudo pwd', $descriptorspec, $pipes, null, null);
-			//echo $process;
-			$stdout = stream_get_contents($pipes[1]);
-			fclose($pipes[1]);
-
-			$stderr = stream_get_contents($pipes[2]);
-			fclose($pipes[2]);
-
-			echo "stdout : \n";
-			var_dump($stdout);
-
-			echo "stderr :\n";
-			var_dump($stderr);
-			echo exec("sudo pwd");
-		}
+			$shellexecOutput = shell_exec("sudo python3 /home/pi/Raspberry-PI-Q/relay_tester.py 60");
+		}		
 	?>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
 	<script type="text/javascript">
 		var auto_refresh = setInterval(
 			function ()
 			{
-				$('#load_updates').load('processID.php?PID=<?php echo $pid ?>').fadeIn("slow");
-			}, 10000); // refresh every 10000 milliseconds
+				//$('#load_updates').load('processID.php?PID=<?=$pid?>').fadeIn("slow");
+				$.getJSON("https://dweet.io/get/dweets/for/Raspberry-PI-Q-Michael_log", function(data) {            		
+					data.with.forEach(function(item){
+                   		document.getElementById("dweetData").value += item.content.log + "\n";
+                   	});										
+				});
+			}, 10000); // refresh every 10 seconds. Number is in milliseconds
 	</script>
 
 	<title>Raspberry-PI-Q by michmike</title>
@@ -80,7 +63,7 @@
 		padding:.3em 1em;
 		text-align:left;
 		}
-		.button {
+		button {
 		border-top: 1px solid #96d1f8;
 		background: #65a9d7;
 		background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
@@ -102,12 +85,12 @@
 		text-decoration: none;
 		vertical-align: middle;
 		}
-		.button:hover {
+		button:hover {
 		border-top-color: #28597a;
 		background: #28597a;
 		color: #ccc;
 		}
-		.button:active {
+		button:active {
 		border-top-color: #1b435e;
 		background: #1b435e;
 		}
@@ -118,8 +101,10 @@
 	<h2>Input Parameters</h2>
 	<h3>Example invocation: sudo python3 /home/pi/Raspberry-PI-Q/Raspberry-PI-Q.py 180 225 125 email@address.com 5 30 Raspberry-PI-Q-Michael ff83612c-6814-466e-bd51-5d55039c184e &</h3>	
 	
-	<div id="load_updates"></div>
+	<div id="load_updates"><textarea name="dweetData" rows="100" cols="30"></textarea></div>
 	<div id="load_updates2"><?php echo $pid ?></div>
+	<div id="shellOutput"><textarea rows="100" cols="30"><?php echo $shellexecOutput ?></textarea></div>
+
 	<form method="get" action="index.php">
 		<input type="hidden" name="PID" value="<?php echo $pid ?>"/>
 		<table>
@@ -140,6 +125,14 @@
 			<tr><td>Grill Setup Temperature</td><td>This is the unique application API ID you get from your grovestreams account</td>
 			<td><input name="GROVE_API_KEY" value="<?php if(isset($_GET['GROVE_API_KEY'])){echo $_GET['GROVE_API_KEY'];} else {echo '[grove API guid]';} ?>"></td></tr>
 		</table>
+		<ul style="list-style-type:circle">
+			<li><b>Run</b> will execute the temperature manager script according to the parameters above. This page will self-refresh with output from the script every 10 seconds</li>
+			<li><b>Kill</b> will terminate all python3 processes and anything you can launch from this page</li>
+			<li><b>Shutdown</b> will shut down the operating system of the Raspberry PI. You can now unplug the power cord</li>
+			<li><b>TestRelay</b> will execute the relay tests on/off for 60 seconds and output the results on this page once the test is complete</li>
+			<li><b>TestThermocouple</b> will execute the temperature tests for each thermocouple for 30 seconds and output the results on this page once the test is complete</li>
+		</ul>
+
 		<input type="submit" name="Run" value="Run"/>
 		&nbsp; &nbsp;
 		<input type="submit" name="Kill" value="Kill"/>
@@ -148,8 +141,7 @@
 		&nbsp; &nbsp;
 		<input type="submit" name="TestRelay" value="TestRelay"/>
 		&nbsp; &nbsp;
-		<input type="submit" name="TestThermocouple" value="TestThermocouple"/>
-		<input type="submit" name="test" value="test"/>
+		<input type="submit" name="TestThermocouple" value="TestThermocouple"/>		
 	</form>
 
 	<h2>Analytics</h2>

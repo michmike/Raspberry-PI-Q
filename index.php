@@ -37,7 +37,8 @@
 	<script type="text/javascript">
 		function ClearLogs()
 		{
-			$('#interactiveData').load("Log content has been erased!");
+			// Erase/replace the current content of the text area with the following message
+			$('#interactiveData').text("Log content has been erased!");
 		}
 
 	<?php
@@ -91,59 +92,35 @@
 		padding:.3em 1em;
 		text-align:left;
 		}
-		button {
-		border-top: 1px solid #96d1f8;
-		background: #65a9d7;
-		background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#65a9d7));
-		background: -webkit-linear-gradient(top, #3e779d, #65a9d7);
-		background: -moz-linear-gradient(top, #3e779d, #65a9d7);
-		background: -ms-linear-gradient(top, #3e779d, #65a9d7);
-		background: -o-linear-gradient(top, #3e779d, #65a9d7);
-		padding: 5px 10px;
-		-webkit-border-radius: 8px;
-		-moz-border-radius: 8px;
-		border-radius: 8px;
-		-webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
-		-moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
-		box-shadow: rgba(0,0,0,1) 0 1px 0;
-		text-shadow: rgba(0,0,0,.4) 0 1px 0;
-		color: white;
-		font-size: 14px;
-		font-family: Georgia, serif;
-		text-decoration: none;
-		vertical-align: middle;
-		}
-		button:hover {
-		border-top-color: #28597a;
-		background: #28597a;
-		color: #ccc;
-		}
-		button:active {
-		border-top-color: #1b435e;
-		background: #1b435e;
-		}
-		input[type=text] {
-		padding:5px; 
-		border:2px solid #ccc; 
-		-webkit-border-radius: 5px;
-		border-radius: 5px;
-		}
-		input[type=text]:focus {
+		input[type=submit]:focus {
 		border-color:#333;
 		}
 		input[type=submit]{
-		width: 15px;
-		position: absolute;
-		right: 20px;
-		bottom: 20px;
+		width: 130px;
 		background: #09c;
 		color: #fff;
+		padding:5px;
 		font-family: tahoma,geneva,algerian;
 		height: 30px;
 		-webkit-border-radius: 15px;
 		-moz-border-radius: 15px;
 		border-radius: 15px;
-		border: 1px solid #999;
+		border: 2px solid #999;
+		}
+		input[type=button]:focus {
+		border-color:#333;
+		}
+		input[type=button]{
+		width: 130px;
+		background: #09c;
+		color: #fff;
+		padding:5px;
+		font-family: tahoma,geneva,algerian;
+		height: 30px;
+		-webkit-border-radius: 15px;
+		-moz-border-radius: 15px;
+		border-radius: 15px;
+		border: 2px solid #999;
 		}
 	</style>
 </head>
@@ -151,7 +128,7 @@
 	<h1>Raspberry-PI-Q by michmike</h1>
 	
 	<div id="pidUpdate" style="color:#FF0000"></div>	
-	<div id="shellOutput"><textarea id="interactiveData" rows="10" cols="100"><?php echo $shellexecOutput ?></textarea></div>
+	<div id="shellOutput"><textarea id="interactiveData" rows="10" cols="160"><?php echo $shellexecOutput ?></textarea></div>
 
 	<h2>Input Parameters</h2>
 	<b>Example: sudo python3 /home/pi/Raspberry-PI-Q/Raspberry-PI-Q.py 180 225 125 email@address.com 5 30 Raspberry-PI-Q-Michael ff83612c-6814-466e-bd51-5d55039c184e</b>
@@ -175,11 +152,12 @@
 			<td><input name="GROVE_API_KEY" value="<?php if(isset($_GET['GROVE_API_KEY'])){echo $_GET['GROVE_API_KEY'];} else {echo '[grove API guid]';} ?>"></td></tr>
 		</table>
 		<ul style="list-style-type:circle">
-			<li><b>Run</b> will execute the temperature manager script according to the parameters above. This page will self-refresh with output from the script every 10 seconds. Timestamps are based on the local system formatting, not based on GMT/UTC like all the other Raspberry-PI-Q timestamps</li>
+			<li><b>Run</b> will execute the temperature manager script according to the parameters above. This page will self-refresh with output from the script logging every 10 seconds. Timestamps are based on the local system formatting, not based on GMT/UTC like all the other Raspberry-PI-Q timestamps</li>
 			<li><b>KillPythonProcesses</b> will terminate all python3 processes and anything you can launch from this page</li>
 			<li><b>ShutdownPI</b> will shut down the operating system of the Raspberry PI. You can now unplug the power cord</li>
 			<li><b>TestRelay</b> will execute the relay tests on/off for 60 seconds and output the results on this page once the test is complete</li>
 			<li><b>TestThermocouple</b> will execute the temperature tests for each thermocouple for 30 seconds and output the results on this page once the test is complete</li>
+			<li><b>ClearLogs</b> will clear the real time stream of the logs from the text area at the top of this page. Logs will likely continue to populate if Raspberry-PI-Q is still running</li>
 		</ul>
 
 		<input type="submit" name="Run" value="Run"/>

@@ -1,13 +1,14 @@
 # Raspberry-PI-Q
-Heavily influenced by @justindean and his [PitmasterPI](https://github.com/justindean/PitmasterPi) project, I decided to create an advanced BBQ temperature controller using a Raspberry PI (RPI) for kamado style grills (like the Big Green Egg). The goals of the project were the following:
+Heavily influenced by [@justindean](https://github.com/justindean) and his [PitmasterPI](https://github.com/justindean/PitmasterPi) project, I decided to create an advanced BBQ temperature controller using a Raspberry PI (RPI) for kamado style grills (like the Big Green Egg and Kamado Joe). The goals of the project were the following:
 * Make delicious and consistently great BBQ
-* Use RPI to control the fan and thus the temperature of the charcoal
+* Use RPI to control the fan and the air intake of the grill. This means you control the temperature of the charcoal
 * Use RPI and predictive algorithms to let me know the exact time when my meat will reach the desired temperature
+* Get frequent notifications on how the cookout is going
 * Use RPI and email/text notifications if my desired intent is not met
 * Make it affordable
 * Create cool dashboards to show off my cooking
 
-The biggest difference of this project from the one @justindean created is the fact that i wanted to be able to have two thermocouples so that i can also monitor the temperature of the meat. Using simple growth rate math, I can use all these data to predict when my BBQ would reach the desired temperature. The updated BOM is listed below.
+The biggest difference of this project from the one @justindean created is the fact that i wanted to be able to have two thermocouples so that i can also monitor the temperature of the meat. That meant I had to write pretty much all of the code from scratch. Using simple growth rate math, I can use all these data to predict when my BBQ would reach the desired temperature. The updated BOM is listed below.
 
 ## Bill of Materials (BOM)
 | Functionality | Item | Price | Link |
@@ -247,7 +248,7 @@ Some things I want to explore for a v2 of this project include
 10. Top air vent for kamado grills (top vent - air and smoke goes out from here). Adjust this depending on temperature and air flow you require  
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/topvent.jpg" width="800" height="600">
 11. Input air vent for kamado grills (bottom vent - air comes in through here)  
-Coming soon...
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/air_intake.JPG" width="800" height="600">
 12. Fire box - light up just a single charcoal and get the Raspberry-PI-Q started  
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/firebox.JPG" width="800" height="600">
 13. My *custom* case for the RPI and all its components (top and side view)  

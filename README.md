@@ -128,6 +128,8 @@ You only need to perform the following steps once!
   * `sudo ifup wlan0` [optional]
   * `sudo reboot`
   * `ifconfig wlan0` [verify you were able to get an IP Address for the wifi connection]
+* If you want to change the timezone to be other than GMT/UTC. Currently the RPI gets its time from an internet time server
+  * `sudo dpkg-reconfigure tzdata`
 * Create a webserver and enable PHP
   * `sudo apt-get install apache2 php5 libapache2-mod-php5`
   * `sudo service apache2 restart`
@@ -136,7 +138,7 @@ You only need to perform the following steps once!
   * Make sure  that the Apache user (www-data) has access to execute sudo commands
     * `sudo nano /etc/sudoers`
     * Add the following line `www-data ALL=(ALL) NOPASSWD: ALL`
-  * Visit your site at `http://<RPI IP Address>/index.php`
+  * Visit your site at `http://<RPI IP Address>/index.php` and read all the documentation
   * After you execute a command on the website, you can check if the python process started using
     * `ps -u www-data`
     * `ps aux  | grep python3`
@@ -211,7 +213,7 @@ Some things I want to explore for a v2 of this project include
 
 ## Pictures
 ### Click on them to see them bigger in size
-1. Relay and Power Wiring for Ground, VCC, and Relay IN2 
+1. Relay and Power Wiring for Ground, VCC, and Relay IN2
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_001929.jpg" width="375" height="500">
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/relay.JPG" width="800" height="600">          
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/relaysetup.JPG" width="800" height="600">
@@ -226,7 +228,6 @@ Some things I want to explore for a v2 of this project include
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/wiringonthermocouple_2.JPG" width="800" height="600">
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_9539.JPG" width="800" height="600">
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_9538.JPG" width="800" height="600">
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002602.jpg" width="800" height="600">
 5. Thermocouples on the robogaia dual board
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_20170123_002521.jpg" width="375" height="500">
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/thermocoupleplate.JPG" width="800" height="600">
@@ -234,26 +235,29 @@ Some things I want to explore for a v2 of this project include
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/IMG_9540.JPG" width="800" height="600">
 6. 
 7. PIN layout for Raspberry
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/RaspberryPI2_PIN_layout.jpg" width="375" height="500">
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/RaspberryPI3_PIN_layout.jpg" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/RaspberryPI2_PIN_layout.jpg">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/RaspberryPI3_PIN_layout.jpg">
 8. Example Text/Email Notification
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/emailnotification.png" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/emailnotification.png">
 9. Example email alert coming from Grovestreams
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/email-alert.jpg" width="800" height="600">
-10. Fan adaptor to fit kamado style grills
-![Fan adaptor to fit kamado style grills](https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/fan-adaptor-for-big-green-egg.jpg)
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/email-alert.png">
+10. 
 11. Inactivity outside-in monitoring alert by Grovestreams
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/outside-in-monitoring.jpg" width="800" height="600">
-12. Parts 
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/outside-in-monitoring.png">
+12. Parts
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/parts.jpg" width="800" height="600">
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/thermocouples.jpg" width="800" height="600">
-13. Top air vent for kamado grills
-14. Input air vent for kamado grills
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/thermocouples.JPG" width="800" height="600">
+13. Top air vent for kamado grills (top vent - air and smoke goes out from here)
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/topvent.jpg" width="800" height="600">
+14. Input air vent for kamado grills (bottom vent - air comes in through here)
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/bottomvent.jpg" width="800" height="600">
 15. Fire box - light up just a single charcoal and get the Raspberry-PI-Q started
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/firebox.JPG" width="800" height="600">
 16. My *custom* case for the RPI and all its components
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/customcase.JPG" width="800" height="600">
 17. Grovestreams dashboard
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/grovestreams.png">
 18. Freeboard.IO dashboard
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/FreeboardDashboard.png" width="600" height="800">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/FreeboardDashboard.png">
 19. Raspberry-PI-Q website 
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/phpWebsite.png" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/phpWebsite.png">

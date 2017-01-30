@@ -131,7 +131,6 @@
 	<div id="shellOutput"><textarea id="interactiveData" rows="10" cols="160"><?php echo $shellexecOutput ?></textarea></div>
 
 	<h2>Input Parameters</h2>
-	<b>Example: sudo python3 /home/pi/Raspberry-PI-Q/Raspberry-PI-Q.py 180 225 125 email@address.com 5 30 Raspberry-PI-Q-Michael ff83612c-6814-466e-bd51-5d55039c184e</b>
 	<form method="get" action="index.php">		
 		<table>
 			<tr><td>Grill Setup Temperature (in Fahrenheit)</td><td>For example 180 is the setup temperature of the grill. The fan will run continuously until this temperature is reached</td>
@@ -152,7 +151,7 @@
 			<td><input name="GROVE_API_KEY" value="<?php if(isset($_GET['GROVE_API_KEY'])){echo $_GET['GROVE_API_KEY'];} else {echo '[grove API guid]';} ?>"></td></tr>
 		</table>
 		<ul style="list-style-type:circle">
-			<li><b>Run</b> will execute the temperature manager script according to the parameters above. This page will self-refresh with output from the script logging every 10 seconds. Timestamps are based on the local system formatting, not based on GMT/UTC like all the other Raspberry-PI-Q timestamps</li>
+			<li><b>Run</b> will execute the temperature manager script according to the parameters above. This page will self-refresh with output from the script logging every 10 seconds. Timestamps are based on the local system formatting, not based on GMT/UTC like all the other Raspberry-PI-Q timestamps. Do not navigate away from this page or make any modifications while the program is running. Be patient and real-time logging will show up. If you need to cancel this operation, you can click on the KillPythonProcesses button or the ShutdownPI button</li>
 			<li><b>KillPythonProcesses</b> will terminate all python3 processes and anything you can launch from this page</li>
 			<li><b>ShutdownPI</b> will shut down the operating system of the Raspberry PI. You can now unplug the power cord</li>
 			<li><b>TestRelay</b> will execute the relay tests on/off for 60 seconds and output the results on this page once the test is complete</li>
@@ -177,5 +176,8 @@
 	<li><a target="new" href="https://dweet.io/follow/Raspberry-PI-Q-IPAddress">Get your IP Address - https://dweet.io/follow/Raspberry-PI-Q-IPAddress</a>
 	<li><a target="new" href="https://freeboard.io/board/nrAnIB">Get the real-time analytics - https://freeboard.io/board/nrAnIB</a>
 	<li><a target="new" href="https://www.grovestreams.com">View the historical analytics and alerts - https://www.grovestreams.com/observationStudio.html</a>		
+
+	<h2>If using Putty and SSH to invoke commands</h2>
+	<b>Example: sudo python3 /home/pi/Raspberry-PI-Q/Raspberry-PI-Q.py 180 225 125 email@address.com 5 30 Raspberry-PI-Q-Michael ff83612c-6814-466e-bd51-5d55039c184e</b>
 </body>
 </html>

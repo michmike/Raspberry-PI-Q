@@ -1,6 +1,7 @@
 <html>
 <head>
 	<?php
+		$shellexecOutput = "No content exists yet!"
 		if (isset($_GET['Run']))
 		{
 			$grillSetupTemp = $_GET['grillSetupTemp'];
@@ -16,11 +17,11 @@
 			$output = shell_exec($command);
 			$pid = trim(preg_replace('/\s+/', ' ', $output));			
 		}
-		else if (isset($_GET['Kill']))
+		else if (isset($_GET['KillPythonProcesses']))
 		{
 			echo shell_exec("sudo pkill python3");
 		}
-		else if (isset($_GET['Shutdown']))
+		else if (isset($_GET['ShutdownPI']))
 		{
 			echo shell_exec("sudo shutdown -h now");
 		}
@@ -35,16 +36,24 @@
 	?>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
 	<script type="text/javascript">
+	<?php
+		// Only execute the self-updating jQuery if the PID is already set
+		if (strlen($pid) > 0)
+		{
+	?>
 		var auto_refresh = setInterval(
 			function ()
 			{
-				//$('#load_updates').load('processID.php?PID=<?=$pid?>').fadeIn("slow");
+				$('#pidUpdate').load('processID.php?PID=<?=$pid?>').fadeIn("slow");
 				$.getJSON("https://dweet.io/get/dweets/for/Raspberry-PI-Q-Michael_log", function(data) {            		
 					data.with.forEach(function(item){
-                   		document.getElementById("dweetData").value += item.content.log + "\n";
+					    $('#interactiveData').append(item.content.log + "\n");						
                    	});										
 				});
 			}, 10000); // refresh every 10 seconds. Number is in milliseconds
+	<?php
+		}
+	?>
 	</script>
 
 	<title>Raspberry-PI-Q by michmike</title>
@@ -98,14 +107,13 @@
 </head>
 <body>	
 	<h1>Raspberry-PI-Q by michmike</h1>
-	<h2>Input Parameters</h2>
-	<h3>Example invocation: sudo python3 /home/pi/Raspberry-PI-Q/Raspberry-PI-Q.py 180 225 125 email@address.com 5 30 Raspberry-PI-Q-Michael ff83612c-6814-466e-bd51-5d55039c184e &</h3>	
 	
-	<div id="load_updates"><textarea name="dweetData" rows="20" cols="100"></textarea></div>	
-	<div id="shellOutput"><textarea rows="20" cols="100"><?php echo $shellexecOutput ?></textarea></div>
+	<div id="pidUpdate" style="color:#FF0000"></div>	
+	<div id="shellOutput"><textarea id="interactiveData" rows="10" cols="100"><?php echo $shellexecOutput ?></textarea></div>
 
-	<form method="get" action="index.php">
-		<input type="hidden" name="PID" value="<?php echo $pid ?>"/>
+	<h2>Input Parameters</h2>
+	<b>Example: sudo python3 /home/pi/Raspberry-PI-Q/Raspberry-PI-Q.py 180 225 125 email@address.com 5 30 Raspberry-PI-Q-Michael ff83612c-6814-466e-bd51-5d55039c184e</b>
+	<form method="get" action="index.php">		
 		<table>
 			<tr><td>Grill Setup Temperature (in Fahrenheit)</td><td>For example 180 is the setup temperature of the grill. The fan will run continuously until this temperature is reached</td>
 				<td><input name="grillSetupTemp" value="<?php if(isset($_GET['grillSetupTemp'])){echo $_GET['grillSetupTemp'];} else {echo '180';} ?>"></td></tr>
@@ -126,17 +134,17 @@
 		</table>
 		<ul style="list-style-type:circle">
 			<li><b>Run</b> will execute the temperature manager script according to the parameters above. This page will self-refresh with output from the script every 10 seconds</li>
-			<li><b>Kill</b> will terminate all python3 processes and anything you can launch from this page</li>
-			<li><b>Shutdown</b> will shut down the operating system of the Raspberry PI. You can now unplug the power cord</li>
+			<li><b>KillPythonProcesses</b> will terminate all python3 processes and anything you can launch from this page</li>
+			<li><b>ShutdownPI</b> will shut down the operating system of the Raspberry PI. You can now unplug the power cord</li>
 			<li><b>TestRelay</b> will execute the relay tests on/off for 60 seconds and output the results on this page once the test is complete</li>
 			<li><b>TestThermocouple</b> will execute the temperature tests for each thermocouple for 30 seconds and output the results on this page once the test is complete</li>
 		</ul>
 
 		<input type="submit" name="Run" value="Run"/>
 		&nbsp; &nbsp;
-		<input type="submit" name="Kill" value="Kill"/>
+		<input type="submit" name="KillPythonProcesses" value="KillPythonProcesses"/>
 		&nbsp; &nbsp;
-		<input type="submit" name="Shutdown" value="Shutdown"/>
+		<input type="submit" name="ShutdownPI" value="ShutdownPI"/>
 		&nbsp; &nbsp;
 		<input type="submit" name="TestRelay" value="TestRelay"/>
 		&nbsp; &nbsp;
@@ -146,6 +154,6 @@
 	<h2>Analytics</h2>
 	<li><a target="new" href="https://dweet.io/follow/Raspberry-PI-Q-IPAddress">Get your IP Address - https://dweet.io/follow/Raspberry-PI-Q-IPAddress</a>
 	<li><a target="new" href="https://freeboard.io/board/nrAnIB">Get the real-time analytics - https://freeboard.io/board/nrAnIB</a>
-	<li><a target="new" href="https://www.grovestreams.com/observationStudio.html">View the historical analytics and alerts - https://www.grovestreams.com/observationStudio.html</a>		
+	<li><a target="new" href="https://www.grovestreams.com">View the historical analytics and alerts - https://www.grovestreams.com/observationStudio.html</a>		
 </body>
 </html>

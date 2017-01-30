@@ -38,7 +38,7 @@
 		function ClearLogs()
 		{
 			// Erase/replace the current content of the text area with the following message
-			$('#interactiveData').text("Log content has been erased!");
+			$('#interactiveData').text("Log content has been erased!\n");
 		}
 
 	<?php

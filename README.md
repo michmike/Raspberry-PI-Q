@@ -243,18 +243,21 @@ Some things I want to explore for a v2 of this project include
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/outside-in-monitoring.png">
 9. Parts  
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/parts.jpg">
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/thermocouples.JPG" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/thermocouple.JPG" width="800" height="600">
 10. Top air vent for kamado grills (top vent - air and smoke goes out from here)  
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/topvent.jpg" width="800" height="600">
+Coming soon...
 11. Input air vent for kamado grills (bottom vent - air comes in through here)  
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/bottomvent.jpg" width="800" height="600">
 12. Fire box - light up just a single charcoal and get the Raspberry-PI-Q started  
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/firebox.JPG" width="800" height="600">
-13. My *custom* case for the RPI and all its components  
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/customcase.JPG" width="800" height="600">
+13. My *custom* case for the RPI and all its components (top and side view)  
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/customcase1.JPG" width="800" height="600">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/customcase2.JPG" width="800" height="600">
 14. Grovestreams dashboard  
-<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/grovestreams.png">
+Coming soon...
 15. Freeboard.IO dashboard  
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/FreeboardDashboard.png">
 16. Raspberry-PI-Q website 
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/phpWebsite.png">
+17. Cooking pictures with the device attached on the kamado grill  
+Coming soon...

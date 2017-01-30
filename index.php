@@ -39,15 +39,31 @@
 		// Only execute the self-updating jQuery if the PID is already set
 		if (strlen($pid) > 0)
 		{
-	?>		
+	?>
+		function ClearLogs()
+		{
+			$('#interactiveData').load("Log content has been erased!");
+		}
+
+	    var lastUpdate = new Date("2017-01-01");
 		var auto_refresh = setInterval(
 			function ()
 			{
-				$('#pidUpdate').load('processID.php?PID=<?=$pid?>').fadeIn("slow");
-				$.getJSON("https://dweet.io/get/dweets/for/Raspberry-PI-Q-Michael_log", function(data) {            		
-					data.with.forEach(function(item){
-					    $('#interactiveData').append(item.content.log + "\n");						
-                   	});										
+				$('#pidUpdate').load('processID.php?PID=<?php echo $pid ?>').fadeIn("slow");
+				$.getJSON("https://dweet.io/get/dweets/for/<?php echo $uniqueName ?>_log", function(data) {
+					var arrayLength = data.with.length;
+					//data.with.forEach(function(item){
+					// go through list of items from DWEEP in reverse order to match chronological events
+					for (i = arrayLength - 1; i >= 0; i--)
+					{
+						var item = data.with[i];
+						var itemDate = new Date(item.created);
+						if (itemDate > lastUpdate)
+						{
+							$('#interactiveData').append(itemDate.toLocaleString() + " - " + item.content.log + "\n");
+							lastUpdate = itemDate;
+						}
+                   	}
 				});
 			}, 10000); // refresh every 10 seconds. Number is in milliseconds
 	<?php
@@ -106,6 +122,29 @@
 		border-top-color: #1b435e;
 		background: #1b435e;
 		}
+		input[type=text] {
+		padding:5px; 
+		border:2px solid #ccc; 
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		}
+		input[type=text]:focus {
+		border-color:#333;
+		}
+		input[type=submit]{
+		width: 15px;
+		position: absolute;
+		right: 20px;
+		bottom: 20px;
+		background: #09c;
+		color: #fff;
+		font-family: tahoma,geneva,algerian;
+		height: 30px;
+		-webkit-border-radius: 15px;
+		-moz-border-radius: 15px;
+		border-radius: 15px;
+		border: 1px solid #999;
+		}
 	</style>
 </head>
 <body>	
@@ -136,7 +175,7 @@
 			<td><input name="GROVE_API_KEY" value="<?php if(isset($_GET['GROVE_API_KEY'])){echo $_GET['GROVE_API_KEY'];} else {echo '[grove API guid]';} ?>"></td></tr>
 		</table>
 		<ul style="list-style-type:circle">
-			<li><b>Run</b> will execute the temperature manager script according to the parameters above. This page will self-refresh with output from the script every 10 seconds</li>
+			<li><b>Run</b> will execute the temperature manager script according to the parameters above. This page will self-refresh with output from the script every 10 seconds. Timestamps are based on the local system formatting, not based on GMT/UTC like all the other Raspberry-PI-Q timestamps</li>
 			<li><b>KillPythonProcesses</b> will terminate all python3 processes and anything you can launch from this page</li>
 			<li><b>ShutdownPI</b> will shut down the operating system of the Raspberry PI. You can now unplug the power cord</li>
 			<li><b>TestRelay</b> will execute the relay tests on/off for 60 seconds and output the results on this page once the test is complete</li>
@@ -151,7 +190,9 @@
 		&nbsp; &nbsp;
 		<input type="submit" name="TestRelay" value="TestRelay"/>
 		&nbsp; &nbsp;
-		<input type="submit" name="TestThermocouple" value="TestThermocouple"/>		
+		<input type="submit" name="TestThermocouple" value="TestThermocouple"/>
+		&nbsp; &nbsp;
+		<input type="button" value="ClearLogs" onclick="ClearLogs();"/>
 	</form>
 
 	<h2>Analytics</h2>

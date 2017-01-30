@@ -93,13 +93,15 @@ def log_grovestreams_data(currGrillTemp, currMeatTemp):
 
 def smartPrint(value):
     # print the data to the stdout, to a file, and also to DWEET.io
+    # be aware that because this is logging pure logs to dweet, we might often exceed their limit
+    # of 1 entry per second per thing. that's ok and acceptable.
     print(value)
     try:
         LOGFILE.write(str(value) + os.linesep)
         os.fsync(LOGFILE)                
         dweepy.dweet_for("%s%s" % (DWEET_NAME, "_log"), {'log':value})         
     except Exception as e:
-        print("***** Warning: Failed to log data to the file stream or to Dweet.io. Failure Reason: %s" % str(e))
+        print("***** Warning: Failed to log data to the file stream or to Dweet.io. This is ok if it is dweet.io due to their bandwidth limitations. Failure Reason: %s" % str(e))
 
 #================================================================#
 

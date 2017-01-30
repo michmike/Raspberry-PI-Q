@@ -13,8 +13,8 @@
 			$GROVE_API_KEY = $_GET['GROVE_API_KEY'];
 
 			$command = "sudo python3 /home/pi/Raspberry-PI-Q/Raspberry-PI-Q.py " . $grillSetupTemp . " " . $desiredGrillTemp . " " . $desiredMeatTemp . " " . $alertEmail . " " . $alertFrequency . " " . $loopInterval . " " . $uniqueName . " " . $GROVE_API_KEY . " > /dev/null 2>&1 & echo $!";
-			$pid = shell_exec($command);
-			echo "The process ID is: " . $pid;
+			$output = shell_exec($command);
+			$pid = trim(preg_replace('/\s+/', ' ', $output));			
 		}
 		else if (isset($_GET['Kill']))
 		{
@@ -101,9 +101,8 @@
 	<h2>Input Parameters</h2>
 	<h3>Example invocation: sudo python3 /home/pi/Raspberry-PI-Q/Raspberry-PI-Q.py 180 225 125 email@address.com 5 30 Raspberry-PI-Q-Michael ff83612c-6814-466e-bd51-5d55039c184e &</h3>	
 	
-	<div id="load_updates"><textarea name="dweetData" rows="100" cols="30"></textarea></div>
-	<div id="load_updates2"><?php echo $pid ?></div>
-	<div id="shellOutput"><textarea rows="100" cols="30"><?php echo $shellexecOutput ?></textarea></div>
+	<div id="load_updates"><textarea name="dweetData" rows="20" cols="100"></textarea></div>	
+	<div id="shellOutput"><textarea rows="20" cols="100"><?php echo $shellexecOutput ?></textarea></div>
 
 	<form method="get" action="index.php">
 		<input type="hidden" name="PID" value="<?php echo $pid ?>"/>

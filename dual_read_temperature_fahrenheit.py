@@ -58,6 +58,7 @@ def get_current_Meat_temp():
 if len(sys.argv) > 1:
     startTime = time.time()
     endTime = float(sys.argv[1])
+    print("Starting dual_read_temperature_fahrenheit.py to test the thermocouples for %s seconds" % endTime)
 
 while 1 == 1:
     grillTemp = get_current_Grill_temp()

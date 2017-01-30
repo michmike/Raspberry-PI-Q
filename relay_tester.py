@@ -28,6 +28,7 @@ SleepTimeL = 20
 if len(sys.argv) > 1:
     startTime = time.time()
     endTime = float(sys.argv[1])
+    print("Starting relay_tester.py to test the relay fan for %s seconds" % endTime)
 
 try:
     while 1 == 1:

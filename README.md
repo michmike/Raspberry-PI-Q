@@ -10,6 +10,8 @@ Heavily influenced by [@justindean](https://github.com/justindean) and his [Pitm
 
 The biggest difference of this project from the one @justindean created is the fact that i wanted to be able to have two thermocouples so that i can also monitor the temperature of the meat. That meant I had to write pretty much all of the code from scratch. Using simple growth rate math, I can use all these data to predict when my BBQ would reach the desired temperature. The updated BOM is listed below.
 
+Before you get started on using Raspberry-PI-Q, make sure you read and understand the terms of the [MIT license](https://github.com/michmike/Raspberry-PI-Q/blob/master/LICENSE) attached to this project.
+
 ## Bill of Materials (BOM)
 | Functionality | Item | Price | Link |
 | ------------- | ---- | ----- | ---- |

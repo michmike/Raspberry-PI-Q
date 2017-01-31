@@ -172,10 +172,11 @@
 		<input type="button" value="ClearLogs" onclick="ClearLogs();"/>
 	</form>
 
-	<h2>Analytics</h2>
+	<h2>Useful Links</h2>
 	<li><a target="new" href="https://dweet.io/follow/Raspberry-PI-Q-IPAddress">Get your IP Address - https://dweet.io/follow/Raspberry-PI-Q-IPAddress</a>
 	<li><a target="new" href="https://freeboard.io/board/nrAnIB">Get the real-time analytics - https://freeboard.io/board/nrAnIB</a>
-	<li><a target="new" href="https://www.grovestreams.com">View the historical analytics and alerts - https://www.grovestreams.com/observationStudio.html</a>		
+	<li><a target="new" href="https://www.grovestreams.com">View the historical analytics and alerts - https://www.grovestreams.com</a>		
+	<li><a target="new" href="https://github.com/michmike/Raspberry-PI-Q">Full documentation on the Raspberry-PI-Q - https://github.com/michmike/Raspberry-PI-Q</a>		
 
 	<h2>If using Putty and SSH to invoke commands</h2>
 	<b>Example: sudo python3 /home/pi/Raspberry-PI-Q/Raspberry-PI-Q.py 180 225 125 email@address.com 5 30 Raspberry-PI-Q-Michael ff83612c-6814-466e-bd51-5d55039c184e</b>

@@ -27,6 +27,7 @@ import statistics
 global DWEET_NAME
 DWEET_NAME = '<entered through arguments>' # this is the "thing" in dweet.io language
 GROWTH_RATE_RANGE = 10 # how many samples we need to have before starting to calculate the statistics for when the meat is ready
+GROWTH_RATE_RANGE_INTERVAL_MINS = 3 # every how many minutes to capture a sample for the growth rate algorithm
 LOGFILE = open('/tmp/Raspberry-PI-Q_operationslog.txt', 'w')
 FROM_EMAIL_ADDRESS = 'raspberrypiq@gmx.com'
 FROM_EMAIL_ADDRESS_PWD = 'Raspberry-pi-q17!'
@@ -293,15 +294,19 @@ def PID_Setup_Loop(grillSetupTemp, alertEmail, alertFrequency):
 
 def PID_Control_Loop(desiredGrillTemp, desiredMeatTemp, alertEmail, alertFrequency, loopInterval):
     arrayIndex = 0
+    timeLeft = 999
     historicalTemps = [None] * GROWTH_RATE_RANGE    
     heater_state = "off"
     currMeatTemp = float(get_current_Meat_temp())
     currGrillTemp = float(get_current_Grill_temp())    
     smartPrint("Entering Control Loop with Grill [now=%0.2f, desired=%0.2f] -- Meat [now=%0.2f, desired=%0.2f]" % (currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTemp))
         
-    # This while loop will never end
+    
     notificationStartTime = time.time()
     tempAlertStartTime = time.time()
+    calculateTimeLeftStartTime = time.time()
+
+    # This while loop will never end
     while True:
         startTime = time.time()
         currMeatTemp = float(get_current_Meat_temp())
@@ -312,9 +317,14 @@ def PID_Control_Loop(desiredGrillTemp, desiredMeatTemp, alertEmail, alertFrequen
             leaveTheFanOnTime = 0
         else:
             leaveTheFanOnTime = math.log(difference)
-
-        historicalTemps[(arrayIndex % GROWTH_RATE_RANGE)] = currMeatTemp
-        timeLeft = calculate_time_left(arrayIndex, currMeatTemp, desiredMeatTemp, historicalTemps, loopInterval)
+        
+        # only update the historical temperature values every X minutes or so to avoid small variations
+        elapsedTimeForNotification = time.time() - calculateTimeLeftStartTime
+        if (elapsedTimeForNotification / 60) > GROWTH_RATE_RANGE_INTERVAL_MINS:
+            historicalTemps[(arrayIndex % GROWTH_RATE_RANGE)] = currMeatTemp            
+            timeLeft = calculate_time_left(arrayIndex, currMeatTemp, desiredMeatTemp, historicalTemps, elapsedTimeForNotification)
+            calculateTimeLeftStartTime = time.time() # reset the timer
+            arrayIndex = arrayIndex + 1
         
         smartPrint("Readings: Grill [now=%0.2f, desired=%0.2f] -- Meat [now=%0.2f, desired=%0.2f] -- Fan for ~%d secs -- Time Left %0.2f mins" % (currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTemp, leaveTheFanOnTime, timeLeft))
         log_data(currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTemp, timeLeft)
@@ -329,7 +339,7 @@ def PID_Control_Loop(desiredGrillTemp, desiredMeatTemp, alertEmail, alertFrequen
             # don't provide any air at all as we are close to our optimal temperature
             smartPrint("We are close to our desired temperature for the Grill. Do Nothing!")
         elif difference < -3:
-            notificationText = "***** Warning: We are above the desired temperature for the grill by more than 3 degrees. Rapsberry-PI-Q will try to recover, but PLEASE KEEP THIS IN MIND!"
+            notificationText = "***** Warning: We are above the desired temperature for the grill by more than 3 degrees. Raspberry-PI-Q will try to recover, but PLEASE KEEP THIS IN MIND!"
             smartPrint(notificationText)            
             elapsedTimeForNotification = time.time() - tempAlertStartTime
             if (elapsedTimeForNotification / 60) > alertFrequency:
@@ -363,7 +373,7 @@ def PID_Control_Loop(desiredGrillTemp, desiredMeatTemp, alertEmail, alertFrequen
             sleep(5)
         else:
             sleep(loopInterval - elapsedTime)  # sleep the remainder seconds to allow temperature to stabilize after the loop
-        arrayIndex = arrayIndex + 1
+        
         
 #================================================================#
 
@@ -405,7 +415,7 @@ def main(argv):
         smartPrint("Exiting after a keyboard cancellation...Goodbye...")
     except Exception as excp:
         smartPrint("***** Alert: An exception occured in running the setup or control loops. Trying again. Error: %s" % excp)
-        send_email_or_text("An error happened while running the automatic temperature control. Rapsberry-PI-Q will try to recover, but PLEASE COME AND MONITOR YOUR GRILL IMMEDIATELY!", alertEmail, "alert")
+        send_email_or_text("An error happened while running the automatic temperature control. Raspberry-PI-Q will try to recover, but PLEASE COME AND MONITOR YOUR GRILL IMMEDIATELY!", alertEmail, "alert")
         smartPrint("Running program again in 10 seconds")
         for x in range(1,10):
             smartPrint(x)

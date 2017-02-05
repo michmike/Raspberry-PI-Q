@@ -167,6 +167,7 @@ You only need to perform the following steps once!
 | Raspberry-PI-Q.py | Contains all the logic of the temperature controller. See below for details on its input parameters |
 | index.php | PHP webpage to control the startup and teardown of the Raspberry-PI-Q python program. It also includes test utilities and real time logging output from the RPI |
 | processID.php | Simple PHP webpage to check if the process ID from the URL is still running on the RPI |
+| monitor.php | Simple PHP webpage to check if the process ID from the URL is still running on the RPI and also to display the real time output from Dweet on the progress of your grilling. You can invoke this page as `http://<IP Address>/monitor.php?PID=14903` where 14903 is the process ID for the execution of Raspberry-PI-Q |
 | launcher.py | This is the python script executed at reboot of the RPI and it refreshes the code from the github repo as well as call the email address program below. It also copies the updated PHP website to the right location |
 | email_IP_address.py | This is a python program that will email and use dweet.io to update the current IP address of the RPI |
 | Freeboard_HTML_MeatChart.txt | This is the sample freeboard.io HTML section for advice on best cooking temperatures. Copy the file contents and create an html-based dashboard on freeboard.io |

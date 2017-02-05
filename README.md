@@ -258,10 +258,14 @@ Some things I want to explore for a v2 of this project include
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/customcase1.JPG" width="800" height="600">
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/customcase2.JPG" width="800" height="600">
 14. Grovestreams dashboard  
-Coming soon...
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/grovestreams.png" width="800" height="600">
 15. Freeboard.IO dashboard  
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/FreeboardDashboard.png">
 16. Raspberry-PI-Q website 
 <img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/phpWebsite.png">
-17. Cooking pictures with the device attached on the kamado grill  
-Coming soon...
+17. Cooking pictures with the device attached on the kamado grill. 9lb bone-in pork shoulder dry rubbed with williams-sonoma chili-lime rub smoked at 225F for ~7hrs. At 160F I foiled it with apple sauce up to 200F when it was shredded.
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/marinated.JPG">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/Raspberry-PI-Q.JPG">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/smoking.JPG">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/porkshoulder_complete.JPG">
+<img src="https://github.com/michmike/Raspberry-PI-Q/blob/master/Images/shredded_pork.JPG">

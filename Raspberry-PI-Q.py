@@ -314,7 +314,7 @@ def PID_Control_Loop(desiredGrillTemp, desiredMeatTemp, alertEmail, alertFrequen
         
         difference = desiredGrillTemp - currGrillTemp
         if (difference <= 1):
-            leaveTheFanOnTime = 3
+            leaveTheFanOnTime = 0
         else:
             leaveTheFanOnTime = math.log10(difference) * 5
         
@@ -345,13 +345,13 @@ def PID_Control_Loop(desiredGrillTemp, desiredMeatTemp, alertEmail, alertFrequen
             if (elapsedTimeForNotification / 60) > alertFrequency:
                 send_email_or_text(notificationText, alertEmail, "warning")
                 tempAlertStartTime = time.time() # reset the timer
-                # to avoid charcoal from running out, run the fan for 3 seconds
+                smartPrint("* Note: to avoid charcoal from extinguishing, run the fan for 3 seconds, even if our desired grill temperature has been exceeded")
                 if heater_state == "off":
                     heater_state = "on"
                     turn_heat_on()
                 else:
                     smartPrint("Leaving the Heat ON")
-                sleep(leaveTheFanOnTime)
+                sleep(3)
         elif difference >= 0:
             if heater_state == "off":
                 heater_state = "on"

@@ -313,10 +313,10 @@ def PID_Control_Loop(desiredGrillTemp, desiredMeatTemp, alertEmail, alertFrequen
         currGrillTemp = float(get_current_Grill_temp())
         
         difference = desiredGrillTemp - currGrillTemp
-        if (difference < 0):
-            leaveTheFanOnTime = 0
+        if (difference <= 1):
+            leaveTheFanOnTime = 1
         else:
-            leaveTheFanOnTime = math.log(difference)
+            leaveTheFanOnTime = math.log(difference) * 10
         
         # only update the historical temperature values every X minutes or so to avoid small variations
         elapsedTimeForNotification = time.time() - calculateTimeLeftStartTime
@@ -335,7 +335,7 @@ def PID_Control_Loop(desiredGrillTemp, desiredMeatTemp, alertEmail, alertFrequen
             send_notification(currGrillTemp, desiredGrillTemp, currMeatTemp, desiredMeatTemp, alertEmail, timeLeft)
             notificationStartTime = time.time() # reset the timer
 
-        if difference <= 3 and difference >= -3:
+        if difference < 0 and difference >= -3:
             # don't provide any air at all as we are close to our optimal temperature
             smartPrint("We are close to our desired temperature for the Grill. Do Nothing!")
         elif difference < -3:
@@ -345,8 +345,7 @@ def PID_Control_Loop(desiredGrillTemp, desiredMeatTemp, alertEmail, alertFrequen
             if (elapsedTimeForNotification / 60) > alertFrequency:
                 send_email_or_text(notificationText, alertEmail, "warning")
                 tempAlertStartTime = time.time() # reset the timer
-
-        elif difference > 3:
+        elif difference >= 0:
             if heater_state == "off":
                 heater_state = "on"
                 turn_heat_on()

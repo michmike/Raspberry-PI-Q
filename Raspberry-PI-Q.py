@@ -252,7 +252,7 @@ def calculate_time_left(arrayIndex, currMeatTemp, desiredMeatTemp, historicalTem
         # log(1) = 0 and we can't have that. Assume 1 degree increase of some sorts
         averageGrowthOverTime = 0.01
 
-    numberOfIntervals = (math.log(desiredMeatTemp / currMeatTemp))/(math.log(averageGrowthOverTime + 1)) # n = log(temp_future/temp_present)/log(growth rate + 1)
+    numberOfIntervals = (math.log10(desiredMeatTemp / currMeatTemp))/(math.log10(averageGrowthOverTime + 1)) # n = log(temp_future/temp_present)/log(growth rate + 1)
     timeLeft = (numberOfIntervals * loopInterval) / 60 # time left in minutes
     return abs(timeLeft) # account for negative growth in some numbers
 
@@ -316,7 +316,7 @@ def PID_Control_Loop(desiredGrillTemp, desiredMeatTemp, alertEmail, alertFrequen
         if (difference <= 1):
             leaveTheFanOnTime = 1
         else:
-            leaveTheFanOnTime = math.log(difference) * 10
+            leaveTheFanOnTime = math.log10(difference) * 5
         
         # only update the historical temperature values every X minutes or so to avoid small variations
         elapsedTimeForNotification = time.time() - calculateTimeLeftStartTime
@@ -362,7 +362,7 @@ def PID_Control_Loop(desiredGrillTemp, desiredMeatTemp, alertEmail, alertFrequen
         elapsedTime = time.time() - startTime  # elapsedTime is in seconds and it accounts for the time spend with the fan on
         if elapsedTime > loopInterval:
             # we have a problem here since it is taking longer to run the loop. sleep a token 5 seconds
-            notificationText = "***** Warning: The chosen loop interval of %d seconds is too small. Consider increasing the inverval to over %d seconds" % (loopInterval, elapsedTime)
+            notificationText = "***** Warning: The chosen loop interval of %d seconds is too small. Consider increasing the interval to over %d seconds" % (loopInterval, elapsedTime)
             smartPrint(notificationText)
             elapsedTimeForNotification = time.time() - tempAlertStartTime
             if (elapsedTimeForNotification / 60) > alertFrequency:

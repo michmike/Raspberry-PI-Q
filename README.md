@@ -214,6 +214,7 @@ Some things I want to explore for a v2 of this project include
 * Use most of the same hardware to create a sous vide immersion circulator
 * Add a high-heat camera to take pictures of my meat _inside_ the grill
 * Adopt the Facebook Messenger Bot architecture to create a bot for my Raspberry-PI-Q
+* Change the algorithm to a more traditional PID https://en.wikipedia.org/wiki/PID_controller. There are lots of python libraries for PID
 
 ## Pictures
 ### Click on them to see them bigger in size
